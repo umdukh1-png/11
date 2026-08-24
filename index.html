@@ -1,0 +1,1069 @@
+<meta charset="utf-8">
+<title>CCA 세일 해부</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&display=swap">
+<style>
+  :root {
+    --paper: #FFFFFF;
+    --ink: #222222;
+    --ink-2: #666666;
+    --ink-3: #999999;
+    --navy: #12386B;
+    --line: #D9D9D9;
+    --line-soft: #ECECEC;
+    --cell: #DCE6F2;
+    --cell-edge: #8FA9CC;
+    --red: #B03A3A;
+    --red-cell: #F3DEDE;
+    --red-edge: #C08A8A;
+    --green: #2E7D4F;
+  }
+
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: "Noto Sans KR", "Malgun Gothic", "Apple SD Gothic Neo", sans-serif;
+    font-size: 15px;
+    line-height: 1.6;
+    margin: 0;
+  }
+  main {
+    max-width: 820px;
+    margin: 0 auto;
+    padding: 40px 24px 80px;
+  }
+
+  /* 마스트헤드 */
+  .masthead {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    font-size: 12.5px;
+    color: var(--ink-2);
+    padding-bottom: 8px;
+  }
+  .masthead .cat { font-weight: 700; color: var(--navy); letter-spacing: 0.04em; }
+  .bar { height: 3px; background: var(--navy); }
+
+  /* 카테고리 탭 */
+  .tabs {
+    display: flex;
+    gap: 2px;
+    border-bottom: 1px solid var(--line);
+    margin-bottom: 34px;
+  }
+  .tab {
+    font-family: inherit;
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--ink-2);
+    background: none;
+    border: none;
+    border-bottom: 2px solid transparent;
+    padding: 12px 14px 10px;
+    cursor: pointer;
+  }
+  .tab:hover { color: var(--ink); }
+  .tab.active { color: var(--navy); border-bottom-color: var(--navy); }
+  .tab:focus-visible { outline: 2px solid var(--navy); outline-offset: -2px; }
+  .cat-page { display: none; }
+  .cat-page.active { display: block; }
+
+  h1 {
+    font-size: 26px;
+    font-weight: 700;
+    line-height: 1.35;
+    margin: 0 0 6px;
+    color: var(--ink);
+  }
+  .subtitle {
+    font-size: 14px;
+    color: var(--ink-2);
+    margin: 0 0 34px;
+  }
+
+  /* 재단 설정값 밴드 */
+  .assume-label {
+    font-size: 12.5px;
+    font-weight: 700;
+    color: var(--navy);
+    letter-spacing: 0.04em;
+    margin: 0 0 6px;
+  }
+  .assume {
+    border-top: 2px solid var(--navy);
+    border-bottom: 1px solid var(--line);
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    margin: 0 0 44px;
+  }
+  .assume .cell {
+    padding: 14px 16px 12px;
+    border-left: 1px solid var(--line-soft);
+  }
+  .assume .cell:first-child { border-left: none; }
+  .assume .k {
+    font-size: 11.5px;
+    color: var(--ink-3);
+    letter-spacing: 0.06em;
+    margin: 0 0 2px;
+  }
+  .assume .v {
+    font-size: 21px;
+    font-weight: 700;
+    color: var(--navy);
+    font-variant-numeric: tabular-nums;
+    margin: 0;
+  }
+  .assume .v small { font-size: 13px; font-weight: 500; color: var(--ink-2); margin-left: 2px; }
+  @media (max-width: 560px) {
+    .assume { grid-template-columns: 1fr; }
+    .assume .cell { border-left: none; border-top: 1px solid var(--line-soft); }
+    .assume .cell:first-child { border-top: none; }
+  }
+
+  /* 단계 섹션 박스 */
+  section {
+    border: 1px solid var(--line);
+    border-radius: 6px;
+    padding: 22px 22px 26px;
+    margin: 0 0 26px;
+  }
+  .sec {
+    font-size: 15.5px;
+    font-weight: 700;
+    color: var(--ink);
+    border-left: 3px solid var(--navy);
+    padding-left: 10px;
+    margin: 0 0 20px;
+  }
+
+  figure { margin: 0; }
+  .fig-scroll { overflow-x: auto; }
+
+  .info-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .info-list li {
+    position: relative;
+    padding-left: 16px;
+    font-size: 14px;
+    line-height: 1.75;
+    color: var(--ink);
+  }
+  .info-list li + li { margin-top: 7px; }
+  .info-list li::before {
+    content: "–";
+    position: absolute;
+    left: 0;
+    color: var(--ink-3);
+  }
+  .info-list a { color: var(--navy); }
+  mark.hl { background: #FFEF9E; color: inherit; font-weight: 700; padding: 1px 5px; border-radius: 2px; }
+  .quote {
+    border-left: 3px solid var(--navy);
+    background: var(--line-soft);
+    border-radius: 0 4px 4px 0;
+    padding: 14px 18px;
+    font-size: 14px;
+    line-height: 1.85;
+    margin: 0;
+  }
+
+  .sum-table {
+    width: 100%;
+    border-collapse: collapse;
+    border-top: 2px solid var(--navy);
+    border-bottom: 1px solid var(--line);
+  }
+  .sum-table td {
+    padding: 11px 12px;
+    border-top: 1px solid var(--line-soft);
+    font-size: 13.5px;
+    line-height: 1.65;
+    vertical-align: top;
+  }
+  .sum-table tr:first-child td { border-top: none; }
+  .sum-table td.cat {
+    font-weight: 700;
+    color: var(--navy);
+    white-space: nowrap;
+    width: 96px;
+  }
+  .sum-table.dense td { font-size: 12.5px; padding: 9px 8px; }
+  .ox-o { color: var(--green); font-weight: 700; }
+  .assume.two { grid-template-columns: repeat(2, 1fr); }
+  .assume .vt { font-size: 15px; font-weight: 700; color: var(--ink); margin: 2px 0 0; }
+  .sum-table td.zero { color: var(--ink-3); font-weight: 400; }
+  .sum-table tr.total td { border-top: 2px solid var(--navy); font-weight: 700; color: var(--navy); }
+  .sum-table td.num { text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
+  .tbl-note { font-size: 12.5px; line-height: 1.7; color: var(--ink-2); margin: 10px 2px 0; }
+  .ox-x { color: var(--red); font-weight: 700; }
+  .sum-table td.h {
+    font-size: 11.5px;
+    color: var(--ink-3);
+    letter-spacing: 0.04em;
+    padding-top: 8px;
+    padding-bottom: 8px;
+  }
+  .fig-scroll svg {
+    display: block;
+    min-width: 700px;
+    width: 100%;
+    height: auto;
+    color: var(--ink-2);
+  }
+</style>
+
+<main>
+  <div class="bar"></div>
+
+  <nav class="tabs">
+    <button class="tab active" data-cat="cat-mechanism" type="button">CCA 세일 메커니즘</button>
+    <button class="tab" data-cat="cat-umia" type="button">$UMIA 세일</button>
+    <button class="tab" data-cat="cat-case" type="button">케이스 스터디</button>
+  </nav>
+
+  <div class="cat-page active" id="cat-mechanism">
+  <p class="assume-label">재단 설정값</p>
+  <div class="assume">
+    <div class="cell">
+      <p class="k">총 판매량</p>
+      <p class="v">100<small>토큰</small></p>
+    </div>
+    <div class="cell">
+      <p class="k">경매 길이</p>
+      <p class="v">10<small>블록</small></p>
+    </div>
+    <div class="cell">
+      <p class="k">블록당 릴리즈</p>
+      <p class="v">10<small>토큰 (균등)</small></p>
+    </div>
+    <div class="cell">
+      <p class="k">시작 FDV</p>
+      <p class="v">$100M</p>
+    </div>
+  </div>
+
+  <section>
+    <p class="sec">1단계 — 릴리즈 스케줄</p>
+    <figure>
+      <div class="fig-scroll">
+        <svg viewBox="0 0 850 292" role="img" aria-label="총 100개 토큰이 10개 블록에 블록당 10개씩 균등 배정된 릴리즈 스케줄">
+          <defs>
+            <marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+              <path d="M 0 1 L 9 5 L 0 9 z" fill="currentColor"/>
+            </marker>
+          </defs>
+
+          <path d="M 24 42 L 24 36 L 88 36 L 88 42" fill="none" stroke="currentColor" stroke-width="1"/>
+          <text x="56" y="26" text-anchor="middle" font-family="Noto Sans KR, sans-serif" font-size="12" fill="currentColor">블록당 10개</text>
+
+          <text x="826" y="26" text-anchor="end" font-family="Noto Sans KR, sans-serif" font-size="12" fill="currentColor">10 블록 × 10개 = 총 100개</text>
+
+          <g>
+            <!-- b1 -->
+            <rect x="24" y="48" width="64" height="148" rx="3" fill="none" stroke="var(--cell-edge)" stroke-width="1.2"/>
+            <g fill="var(--cell)" stroke="var(--cell-edge)" stroke-width="0.8">
+              <rect x="30" y="54" width="24" height="24" rx="2"/><rect x="58" y="54" width="24" height="24" rx="2"/>
+              <rect x="30" y="82" width="24" height="24" rx="2"/><rect x="58" y="82" width="24" height="24" rx="2"/>
+              <rect x="30" y="110" width="24" height="24" rx="2"/><rect x="58" y="110" width="24" height="24" rx="2"/>
+              <rect x="30" y="138" width="24" height="24" rx="2"/><rect x="58" y="138" width="24" height="24" rx="2"/>
+              <rect x="30" y="166" width="24" height="24" rx="2"/><rect x="58" y="166" width="24" height="24" rx="2"/>
+            </g>
+            <text x="56" y="218" text-anchor="middle" font-family="Noto Sans KR, sans-serif" font-size="12" fill="currentColor">1</text>
+            <!-- b2 -->
+            <rect x="106" y="48" width="64" height="148" rx="3" fill="none" stroke="var(--cell-edge)" stroke-width="1.2"/>
+            <g fill="var(--cell)" stroke="var(--cell-edge)" stroke-width="0.8">
+              <rect x="112" y="54" width="24" height="24" rx="2"/><rect x="140" y="54" width="24" height="24" rx="2"/>
+              <rect x="112" y="82" width="24" height="24" rx="2"/><rect x="140" y="82" width="24" height="24" rx="2"/>
+              <rect x="112" y="110" width="24" height="24" rx="2"/><rect x="140" y="110" width="24" height="24" rx="2"/>
+              <rect x="112" y="138" width="24" height="24" rx="2"/><rect x="140" y="138" width="24" height="24" rx="2"/>
+              <rect x="112" y="166" width="24" height="24" rx="2"/><rect x="140" y="166" width="24" height="24" rx="2"/>
+            </g>
+            <text x="138" y="218" text-anchor="middle" font-family="Noto Sans KR, sans-serif" font-size="12" fill="currentColor">2</text>
+            <!-- b3 -->
+            <rect x="188" y="48" width="64" height="148" rx="3" fill="none" stroke="var(--cell-edge)" stroke-width="1.2"/>
+            <g fill="var(--cell)" stroke="var(--cell-edge)" stroke-width="0.8">
+              <rect x="194" y="54" width="24" height="24" rx="2"/><rect x="222" y="54" width="24" height="24" rx="2"/>
+              <rect x="194" y="82" width="24" height="24" rx="2"/><rect x="222" y="82" width="24" height="24" rx="2"/>
+              <rect x="194" y="110" width="24" height="24" rx="2"/><rect x="222" y="110" width="24" height="24" rx="2"/>
+              <rect x="194" y="138" width="24" height="24" rx="2"/><rect x="222" y="138" width="24" height="24" rx="2"/>
+              <rect x="194" y="166" width="24" height="24" rx="2"/><rect x="222" y="166" width="24" height="24" rx="2"/>
+            </g>
+            <text x="220" y="218" text-anchor="middle" font-family="Noto Sans KR, sans-serif" font-size="12" fill="currentColor">3</text>
+            <!-- b4 -->
+            <rect x="270" y="48" width="64" height="148" rx="3" fill="none" stroke="var(--cell-edge)" stroke-width="1.2"/>
+            <g fill="var(--cell)" stroke="var(--cell-edge)" stroke-width="0.8">
+              <rect x="276" y="54" width="24" height="24" rx="2"/><rect x="304" y="54" width="24" height="24" rx="2"/>
+              <rect x="276" y="82" width="24" height="24" rx="2"/><rect x="304" y="82" width="24" height="24" rx="2"/>
+              <rect x="276" y="110" width="24" height="24" rx="2"/><rect x="304" y="110" width="24" height="24" rx="2"/>
+              <rect x="276" y="138" width="24" height="24" rx="2"/><rect x="304" y="138" width="24" height="24" rx="2"/>
+              <rect x="276" y="166" width="24" height="24" rx="2"/><rect x="304" y="166" width="24" height="24" rx="2"/>
+            </g>
+            <text x="302" y="218" text-anchor="middle" font-family="Noto Sans KR, sans-serif" font-size="12" fill="currentColor">4</text>
+            <!-- b5 -->
+            <rect x="352" y="48" width="64" height="148" rx="3" fill="none" stroke="var(--cell-edge)" stroke-width="1.2"/>
+            <g fill="var(--cell)" stroke="var(--cell-edge)" stroke-width="0.8">
+              <rect x="358" y="54" width="24" height="24" rx="2"/><rect x="386" y="54" width="24" height="24" rx="2"/>
+              <rect x="358" y="82" width="24" height="24" rx="2"/><rect x="386" y="82" width="24" height="24" rx="2"/>
+              <rect x="358" y="110" width="24" height="24" rx="2"/><rect x="386" y="110" width="24" height="24" rx="2"/>
+              <rect x="358" y="138" width="24" height="24" rx="2"/><rect x="386" y="138" width="24" height="24" rx="2"/>
+              <rect x="358" y="166" width="24" height="24" rx="2"/><rect x="386" y="166" width="24" height="24" rx="2"/>
+            </g>
+            <text x="384" y="218" text-anchor="middle" font-family="Noto Sans KR, sans-serif" font-size="12" fill="currentColor">5</text>
+            <!-- b6 -->
+            <rect x="434" y="48" width="64" height="148" rx="3" fill="none" stroke="var(--cell-edge)" stroke-width="1.2"/>
+            <g fill="var(--cell)" stroke="var(--cell-edge)" stroke-width="0.8">
+              <rect x="440" y="54" width="24" height="24" rx="2"/><rect x="468" y="54" width="24" height="24" rx="2"/>
+              <rect x="440" y="82" width="24" height="24" rx="2"/><rect x="468" y="82" width="24" height="24" rx="2"/>
+              <rect x="440" y="110" width="24" height="24" rx="2"/><rect x="468" y="110" width="24" height="24" rx="2"/>
+              <rect x="440" y="138" width="24" height="24" rx="2"/><rect x="468" y="138" width="24" height="24" rx="2"/>
+              <rect x="440" y="166" width="24" height="24" rx="2"/><rect x="468" y="166" width="24" height="24" rx="2"/>
+            </g>
+            <text x="466" y="218" text-anchor="middle" font-family="Noto Sans KR, sans-serif" font-size="12" fill="currentColor">6</text>
+            <!-- b7 -->
+            <rect x="516" y="48" width="64" height="148" rx="3" fill="none" stroke="var(--cell-edge)" stroke-width="1.2"/>
+            <g fill="var(--cell)" stroke="var(--cell-edge)" stroke-width="0.8">
+              <rect x="522" y="54" width="24" height="24" rx="2"/><rect x="550" y="54" width="24" height="24" rx="2"/>
+              <rect x="522" y="82" width="24" height="24" rx="2"/><rect x="550" y="82" width="24" height="24" rx="2"/>
+              <rect x="522" y="110" width="24" height="24" rx="2"/><rect x="550" y="110" width="24" height="24" rx="2"/>
+              <rect x="522" y="138" width="24" height="24" rx="2"/><rect x="550" y="138" width="24" height="24" rx="2"/>
+              <rect x="522" y="166" width="24" height="24" rx="2"/><rect x="550" y="166" width="24" height="24" rx="2"/>
+            </g>
+            <text x="548" y="218" text-anchor="middle" font-family="Noto Sans KR, sans-serif" font-size="12" fill="currentColor">7</text>
+            <!-- b8 -->
+            <rect x="598" y="48" width="64" height="148" rx="3" fill="none" stroke="var(--cell-edge)" stroke-width="1.2"/>
+            <g fill="var(--cell)" stroke="var(--cell-edge)" stroke-width="0.8">
+              <rect x="604" y="54" width="24" height="24" rx="2"/><rect x="632" y="54" width="24" height="24" rx="2"/>
+              <rect x="604" y="82" width="24" height="24" rx="2"/><rect x="632" y="82" width="24" height="24" rx="2"/>
+              <rect x="604" y="110" width="24" height="24" rx="2"/><rect x="632" y="110" width="24" height="24" rx="2"/>
+              <rect x="604" y="138" width="24" height="24" rx="2"/><rect x="632" y="138" width="24" height="24" rx="2"/>
+              <rect x="604" y="166" width="24" height="24" rx="2"/><rect x="632" y="166" width="24" height="24" rx="2"/>
+            </g>
+            <text x="630" y="218" text-anchor="middle" font-family="Noto Sans KR, sans-serif" font-size="12" fill="currentColor">8</text>
+            <!-- b9 -->
+            <rect x="680" y="48" width="64" height="148" rx="3" fill="none" stroke="var(--cell-edge)" stroke-width="1.2"/>
+            <g fill="var(--cell)" stroke="var(--cell-edge)" stroke-width="0.8">
+              <rect x="686" y="54" width="24" height="24" rx="2"/><rect x="714" y="54" width="24" height="24" rx="2"/>
+              <rect x="686" y="82" width="24" height="24" rx="2"/><rect x="714" y="82" width="24" height="24" rx="2"/>
+              <rect x="686" y="110" width="24" height="24" rx="2"/><rect x="714" y="110" width="24" height="24" rx="2"/>
+              <rect x="686" y="138" width="24" height="24" rx="2"/><rect x="714" y="138" width="24" height="24" rx="2"/>
+              <rect x="686" y="166" width="24" height="24" rx="2"/><rect x="714" y="166" width="24" height="24" rx="2"/>
+            </g>
+            <text x="712" y="218" text-anchor="middle" font-family="Noto Sans KR, sans-serif" font-size="12" fill="currentColor">9</text>
+            <!-- b10 -->
+            <rect x="762" y="48" width="64" height="148" rx="3" fill="none" stroke="var(--cell-edge)" stroke-width="1.2"/>
+            <g fill="var(--cell)" stroke="var(--cell-edge)" stroke-width="0.8">
+              <rect x="768" y="54" width="24" height="24" rx="2"/><rect x="796" y="54" width="24" height="24" rx="2"/>
+              <rect x="768" y="82" width="24" height="24" rx="2"/><rect x="796" y="82" width="24" height="24" rx="2"/>
+              <rect x="768" y="110" width="24" height="24" rx="2"/><rect x="796" y="110" width="24" height="24" rx="2"/>
+              <rect x="768" y="138" width="24" height="24" rx="2"/><rect x="796" y="138" width="24" height="24" rx="2"/>
+              <rect x="768" y="166" width="24" height="24" rx="2"/><rect x="796" y="166" width="24" height="24" rx="2"/>
+            </g>
+            <text x="792" y="218" text-anchor="middle" font-family="Noto Sans KR, sans-serif" font-size="12" fill="currentColor">10</text>
+          </g>
+
+          <line x1="24" y1="248" x2="820" y2="248" stroke="currentColor" stroke-width="1.2" marker-end="url(#arr)"/>
+          <text x="24" y="274" font-family="Noto Sans KR, sans-serif" font-size="12" fill="currentColor">경매 진행 (블록 시간)</text>
+          <text x="820" y="274" text-anchor="end" font-family="Noto Sans KR, sans-serif" font-size="12" fill="currentColor">블록마다 1회 청산</text>
+        </svg>
+      </div>
+    </figure>
+  </section>
+
+  <section>
+    <p class="sec">2단계 — 사용자 입찰</p>
+    <figure>
+      <div class="fig-scroll">
+        <svg viewBox="0 0 850 240" role="img" aria-label="사용자가 최대가격 FDV $200M, 예산 $1,000으로 입찰하면 예산이 10개 블록에 $100씩 분산 배정됨">
+          <defs>
+            <marker id="arrN2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6.5" markerHeight="6.5" orient="auto-start-reverse">
+              <path d="M 0 1 L 9 5 L 0 9 z" fill="var(--navy)"/>
+            </marker>
+            <marker id="arr2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+              <path d="M 0 1 L 9 5 L 0 9 z" fill="currentColor"/>
+            </marker>
+          </defs>
+
+          <!-- 사용자 입찰 박스 -->
+          <rect x="315" y="8" width="220" height="64" rx="3" fill="var(--paper)" stroke="var(--navy)" stroke-width="1.5"/>
+          <text x="425" y="26" text-anchor="middle" font-family="Noto Sans KR, sans-serif" font-size="13" font-weight="700" fill="var(--navy)">참여자 A</text>
+          <text x="425" y="45" text-anchor="middle" font-family="Noto Sans KR, sans-serif" font-size="12.5" fill="var(--navy)">예산 <tspan font-weight="700">$1,000</tspan></text>
+          <text x="425" y="63" text-anchor="middle" font-family="Noto Sans KR, sans-serif" font-size="12.5" fill="var(--navy)">최대가격 <tspan font-weight="700">FDV $200M</tspan></text>
+
+          <!-- 분산 레일 -->
+          <g stroke="var(--navy)" stroke-width="1.2" fill="none">
+            <line x1="425" y1="72" x2="425" y2="88"/>
+            <line x1="56" y1="88" x2="792" y2="88"/>
+            <line x1="56" y1="88" x2="56" y2="104" marker-end="url(#arrN2)"/>
+            <line x1="138" y1="88" x2="138" y2="104" marker-end="url(#arrN2)"/>
+            <line x1="220" y1="88" x2="220" y2="104" marker-end="url(#arrN2)"/>
+            <line x1="302" y1="88" x2="302" y2="104" marker-end="url(#arrN2)"/>
+            <line x1="384" y1="88" x2="384" y2="104" marker-end="url(#arrN2)"/>
+            <line x1="466" y1="88" x2="466" y2="104" marker-end="url(#arrN2)"/>
+            <line x1="548" y1="88" x2="548" y2="104" marker-end="url(#arrN2)"/>
+            <line x1="630" y1="88" x2="630" y2="104" marker-end="url(#arrN2)"/>
+            <line x1="712" y1="88" x2="712" y2="104" marker-end="url(#arrN2)"/>
+            <line x1="792" y1="88" x2="792" y2="104" marker-end="url(#arrN2)"/>
+          </g>
+
+          <!-- 블록별 $100 슬롯 -->
+          <g>
+            <rect x="24" y="110" width="64" height="40" rx="3" fill="none" stroke="var(--cell-edge)" stroke-width="1.2"/>
+            <text x="56" y="135" text-anchor="middle" font-family="Noto Sans KR, sans-serif" font-size="12.5" font-weight="700" fill="var(--navy)">$100</text>
+            <text x="56" y="172" text-anchor="middle" font-family="Noto Sans KR, sans-serif" font-size="12" fill="currentColor">1</text>
+
+            <rect x="106" y="110" width="64" height="40" rx="3" fill="none" stroke="var(--cell-edge)" stroke-width="1.2"/>
+            <text x="138" y="135" text-anchor="middle" font-family="Noto Sans KR, sans-serif" font-size="12.5" font-weight="700" fill="var(--navy)">$100</text>
+            <text x="138" y="172" text-anchor="middle" font-family="Noto Sans KR, sans-serif" font-size="12" fill="currentColor">2</text>
+
+            <rect x="188" y="110" width="64" height="40" rx="3" fill="none" stroke="var(--cell-edge)" stroke-width="1.2"/>
+            <text x="220" y="135" text-anchor="middle" font-family="Noto Sans KR, sans-serif" font-size="12.5" font-weight="700" fill="var(--navy)">$100</text>
+            <text x="220" y="172" text-anchor="middle" font-family="Noto Sans KR, sans-serif" font-size="12" fill="currentColor">3</text>
+
+            <rect x="270" y="110" width="64" height="40" rx="3" fill="none" stroke="var(--cell-edge)" stroke-width="1.2"/>
+            <text x="302" y="135" text-anchor="middle" font-family="Noto Sans KR, sans-serif" font-size="12.5" font-weight="700" fill="var(--navy)">$100</text>
+            <text x="302" y="172" text-anchor="middle" font-family="Noto Sans KR, sans-serif" font-size="12" fill="currentColor">4</text>
+
+            <rect x="352" y="110" width="64" height="40" rx="3" fill="none" stroke="var(--cell-edge)" stroke-width="1.2"/>
+            <text x="384" y="135" text-anchor="middle" font-family="Noto Sans KR, sans-serif" font-size="12.5" font-weight="700" fill="var(--navy)">$100</text>
+            <text x="384" y="172" text-anchor="middle" font-family="Noto Sans KR, sans-serif" font-size="12" fill="currentColor">5</text>
+
+            <rect x="434" y="110" width="64" height="40" rx="3" fill="none" stroke="var(--cell-edge)" stroke-width="1.2"/>
+            <text x="466" y="135" text-anchor="middle" font-family="Noto Sans KR, sans-serif" font-size="12.5" font-weight="700" fill="var(--navy)">$100</text>
+            <text x="466" y="172" text-anchor="middle" font-family="Noto Sans KR, sans-serif" font-size="12" fill="currentColor">6</text>
+
+            <rect x="516" y="110" width="64" height="40" rx="3" fill="none" stroke="var(--cell-edge)" stroke-width="1.2"/>
+            <text x="548" y="135" text-anchor="middle" font-family="Noto Sans KR, sans-serif" font-size="12.5" font-weight="700" fill="var(--navy)">$100</text>
+            <text x="548" y="172" text-anchor="middle" font-family="Noto Sans KR, sans-serif" font-size="12" fill="currentColor">7</text>
+
+            <rect x="598" y="110" width="64" height="40" rx="3" fill="none" stroke="var(--cell-edge)" stroke-width="1.2"/>
+            <text x="630" y="135" text-anchor="middle" font-family="Noto Sans KR, sans-serif" font-size="12.5" font-weight="700" fill="var(--navy)">$100</text>
+            <text x="630" y="172" text-anchor="middle" font-family="Noto Sans KR, sans-serif" font-size="12" fill="currentColor">8</text>
+
+            <rect x="680" y="110" width="64" height="40" rx="3" fill="none" stroke="var(--cell-edge)" stroke-width="1.2"/>
+            <text x="712" y="135" text-anchor="middle" font-family="Noto Sans KR, sans-serif" font-size="12.5" font-weight="700" fill="var(--navy)">$100</text>
+            <text x="712" y="172" text-anchor="middle" font-family="Noto Sans KR, sans-serif" font-size="12" fill="currentColor">9</text>
+
+            <rect x="762" y="110" width="64" height="40" rx="3" fill="none" stroke="var(--cell-edge)" stroke-width="1.2"/>
+            <text x="792" y="135" text-anchor="middle" font-family="Noto Sans KR, sans-serif" font-size="12.5" font-weight="700" fill="var(--navy)">$100</text>
+            <text x="792" y="172" text-anchor="middle" font-family="Noto Sans KR, sans-serif" font-size="12" fill="currentColor">10</text>
+          </g>
+
+          <!-- 시간축 -->
+          <line x1="24" y1="198" x2="820" y2="198" stroke="currentColor" stroke-width="1.2" marker-end="url(#arr2)"/>
+          <text x="24" y="224" font-family="Noto Sans KR, sans-serif" font-size="12" fill="currentColor">경매 진행 (블록 시간)</text>
+        </svg>
+      </div>
+    </figure>
+  </section>
+
+  <section>
+    <p class="sec">3단계 — 블록 내 주문 체결·가격 발견</p>
+    <figure>
+      <div class="fig-scroll">
+        <svg viewBox="0 0 850 340" role="img" aria-label="블록 1을 확대해 들어가면, 가격 결정 패널에서 후보가격별 체결량 비교로 블록 체결가 $10이 정해지고, 화살표를 거쳐 분배 패널에서 A 10개·B 0개·C 0개로 할당되는 과정">
+          <defs>
+            <marker id="arrN3" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+              <path d="M 0 1 L 9 5 L 0 9 z" fill="var(--navy)"/>
+            </marker>
+          </defs>
+
+          <!-- 블록 1 유입 $100 × 3 (참여자별) -->
+          <rect x="16" y="49" width="72" height="52" rx="3" fill="var(--paper)" stroke="var(--cell-edge)" stroke-width="1.2"/>
+          <text x="52" y="71" text-anchor="middle" font-family="Noto Sans KR, sans-serif" font-size="13" font-weight="700" fill="var(--ink)">블록 1</text>
+          <text x="52" y="89" text-anchor="middle" font-family="Noto Sans KR, sans-serif" font-size="11" fill="var(--ink-2)">$100</text>
+          <line x1="92" y1="75" x2="118" y2="75" stroke="var(--navy)" stroke-width="1.5" marker-end="url(#arrN3)"/>
+
+          <rect x="16" y="125" width="72" height="52" rx="3" fill="var(--paper)" stroke="var(--cell-edge)" stroke-width="1.2"/>
+          <text x="52" y="147" text-anchor="middle" font-family="Noto Sans KR, sans-serif" font-size="13" font-weight="700" fill="var(--ink)">블록 1</text>
+          <text x="52" y="165" text-anchor="middle" font-family="Noto Sans KR, sans-serif" font-size="11" fill="var(--ink-2)">$100</text>
+          <line x1="92" y1="151" x2="118" y2="151" stroke="var(--navy)" stroke-width="1.5" marker-end="url(#arrN3)"/>
+
+          <rect x="16" y="201" width="72" height="52" rx="3" fill="var(--paper)" stroke="var(--cell-edge)" stroke-width="1.2"/>
+          <text x="52" y="223" text-anchor="middle" font-family="Noto Sans KR, sans-serif" font-size="13" font-weight="700" fill="var(--ink)">블록 1</text>
+          <text x="52" y="241" text-anchor="middle" font-family="Noto Sans KR, sans-serif" font-size="11" fill="var(--ink-2)">$100</text>
+          <line x1="92" y1="227" x2="118" y2="227" stroke="var(--navy)" stroke-width="1.5" marker-end="url(#arrN3)"/>
+
+          <!-- 패널 헤더 -->
+          <text x="118" y="26" font-family="Noto Sans KR, sans-serif" font-size="13" font-weight="700" fill="var(--navy)">가격 결정</text>
+          <text x="674" y="26" font-family="Noto Sans KR, sans-serif" font-size="13" font-weight="700" fill="var(--navy)">분배</text>
+
+          <!-- 패널 박스 -->
+          <rect x="118" y="36" width="508" height="264" rx="4" fill="none" stroke="var(--line)" stroke-width="1"/>
+          <rect x="674" y="36" width="160" height="264" rx="4" fill="none" stroke="var(--line)" stroke-width="1"/>
+
+          <!-- 연결 화살표 -->
+          <text x="649" y="146" text-anchor="middle" font-family="Noto Sans KR, sans-serif" font-size="14" font-weight="700" fill="var(--red)">$10</text>
+          <line x1="630" y1="160" x2="668" y2="160" stroke="var(--navy)" stroke-width="2.5" marker-end="url(#arrN3)"/>
+
+          <!-- [가격 결정] 입찰 카드 -->
+          <g>
+            <rect x="126" y="46" width="178" height="58" rx="3" fill="var(--paper)" stroke="var(--cell-edge)" stroke-width="1.2"/>
+            <text x="138" y="70" font-family="Noto Sans KR, sans-serif" font-size="13" font-weight="700" fill="var(--ink)">A — $100 <tspan font-weight="500" fill="var(--ink-2)">(FDV $200M)</tspan></text>
+            <text x="138" y="90" font-family="Noto Sans KR, sans-serif" font-size="12" fill="var(--ink-2)">최대가격 $20</text>
+
+            <rect x="126" y="122" width="178" height="58" rx="3" fill="var(--paper)" stroke="var(--cell-edge)" stroke-width="1.2"/>
+            <text x="138" y="146" font-family="Noto Sans KR, sans-serif" font-size="13" font-weight="700" fill="var(--ink)">B — $100 <tspan font-weight="500" fill="var(--ink-2)">(FDV $100M)</tspan></text>
+            <text x="138" y="166" font-family="Noto Sans KR, sans-serif" font-size="12" fill="var(--ink-2)">최대가격 $10</text>
+
+            <rect x="126" y="198" width="178" height="58" rx="3" fill="var(--paper)" stroke="var(--cell-edge)" stroke-width="1.2"/>
+            <text x="138" y="222" font-family="Noto Sans KR, sans-serif" font-size="13" font-weight="700" fill="var(--ink)">C — $100 <tspan font-weight="500" fill="var(--ink-2)">(FDV $50M)</tspan></text>
+            <text x="138" y="242" font-family="Noto Sans KR, sans-serif" font-size="12" fill="var(--ink-2)">최대가격 $5</text>
+          </g>
+
+          <!-- [가격 결정] 공급 기준선 -->
+          <line x1="488" y1="40" x2="488" y2="246" stroke="currentColor" stroke-width="1" stroke-dasharray="4 3"/>
+          <text x="494" y="50" font-family="Noto Sans KR, sans-serif" font-size="11.5" fill="currentColor">공급 10개</text>
+
+          <!-- [가격 결정] 후보가격별 체결량 -->
+          <text x="346" y="72" text-anchor="end" font-family="Noto Sans KR, sans-serif" font-size="14" font-weight="700" fill="currentColor">$20</text>
+          <rect x="358" y="46" width="65" height="40" rx="2" fill="var(--cell)" stroke="var(--cell-edge)" stroke-width="1"/>
+          <text x="390" y="71" text-anchor="middle" font-family="Noto Sans KR, sans-serif" font-size="12" fill="var(--ink-2)">5개</text>
+          <text x="496" y="71" font-family="Noto Sans KR, sans-serif" font-size="12" fill="currentColor">A만 참여</text>
+
+          <text x="346" y="148" text-anchor="end" font-family="Noto Sans KR, sans-serif" font-size="14" font-weight="700" fill="var(--red)">$10</text>
+          <rect x="358" y="122" width="130" height="40" rx="2" fill="var(--red-cell)" stroke="var(--red-edge)" stroke-width="1.2"/>
+          <text x="423" y="147" text-anchor="middle" font-family="Noto Sans KR, sans-serif" font-size="12" font-weight="700" fill="var(--red)">10개 · 전량</text>
+          <text x="496" y="147" font-family="Noto Sans KR, sans-serif" font-size="12" fill="currentColor">A+B 참여</text>
+
+          <text x="346" y="224" text-anchor="end" font-family="Noto Sans KR, sans-serif" font-size="14" font-weight="700" fill="var(--ink-3)">$5</text>
+          <rect x="358" y="198" width="130" height="40" rx="2" fill="var(--line-soft)" stroke="var(--line)" stroke-width="1"/>
+          <text x="423" y="223" text-anchor="middle" font-family="Noto Sans KR, sans-serif" font-size="12" fill="var(--ink-3)">10개</text>
+          <text x="496" y="223" font-family="Noto Sans KR, sans-serif" font-size="12" fill="var(--ink-3)">A+B+C 참여</text>
+
+          <!-- [가격 결정] 체결량 축 -->
+          <line x1="358" y1="256" x2="530" y2="256" stroke="currentColor" stroke-width="1"/>
+          <g stroke="currentColor" stroke-width="1">
+            <line x1="358" y1="256" x2="358" y2="261"/>
+            <line x1="423" y1="256" x2="423" y2="261"/>
+            <line x1="488" y1="256" x2="488" y2="261"/>
+          </g>
+          <g font-family="Noto Sans KR, sans-serif" font-size="11" fill="currentColor" text-anchor="middle">
+            <text x="358" y="276">0</text>
+            <text x="423" y="276">5</text>
+            <text x="488" y="276">10</text>
+          </g>
+          <text x="423" y="292" text-anchor="middle" font-family="Noto Sans KR, sans-serif" font-size="12" fill="currentColor">체결량 (토큰)</text>
+
+          <!-- [분배] -->
+          <text x="754" y="60" text-anchor="middle" font-family="Noto Sans KR, sans-serif" font-size="12" font-weight="700" fill="var(--red)">체결가 $10 기준 할당</text>
+
+          <text x="684" y="102" font-family="Noto Sans KR, sans-serif" font-size="14" font-weight="700" fill="var(--ink)">A</text>
+          <g fill="var(--cell)" stroke="var(--cell-edge)" stroke-width="0.8">
+            <rect x="702" y="82" width="14" height="14" rx="2"/><rect x="719" y="82" width="14" height="14" rx="2"/><rect x="736" y="82" width="14" height="14" rx="2"/><rect x="753" y="82" width="14" height="14" rx="2"/><rect x="770" y="82" width="14" height="14" rx="2"/>
+            <rect x="702" y="99" width="14" height="14" rx="2"/><rect x="719" y="99" width="14" height="14" rx="2"/><rect x="736" y="99" width="14" height="14" rx="2"/><rect x="753" y="99" width="14" height="14" rx="2"/><rect x="770" y="99" width="14" height="14" rx="2"/>
+          </g>
+          <text x="790" y="102" font-family="Noto Sans KR, sans-serif" font-size="12.5" font-weight="700" fill="var(--navy)">10개</text>
+
+          <text x="684" y="172" font-family="Noto Sans KR, sans-serif" font-size="14" font-weight="700" fill="var(--ink-3)">B</text>
+          <rect x="702" y="150" width="82" height="35" rx="2" fill="none" stroke="var(--line)" stroke-width="1" stroke-dasharray="4 3"/>
+          <text x="790" y="172" font-family="Noto Sans KR, sans-serif" font-size="12.5" fill="var(--ink-3)">0개</text>
+
+          <text x="684" y="242" font-family="Noto Sans KR, sans-serif" font-size="14" font-weight="700" fill="var(--ink-3)">C</text>
+          <rect x="702" y="220" width="82" height="35" rx="2" fill="none" stroke="var(--line)" stroke-width="1" stroke-dasharray="4 3"/>
+          <text x="790" y="242" font-family="Noto Sans KR, sans-serif" font-size="12.5" fill="var(--ink-3)">0개</text>
+
+          <text x="372" y="326" text-anchor="middle" font-family="Noto Sans KR, sans-serif" font-size="12.5" font-weight="700" fill="currentColor">체결량이 최대가 되는 가장 높은 가격 = 블록 체결가</text>
+        </svg>
+      </div>
+    </figure>
+  </section>
+
+  <section>
+    <p class="sec">4단계 — 미체결 자금의 행방</p>
+    <figure>
+      <div class="fig-scroll">
+        <svg viewBox="0 0 850 300" role="img" aria-label="블록 1 체결가 $10에서 A는 단가 $10에 10개 체결, B는 0개 체결로 $100이 블록 2~10에 $11.1씩 이월, C는 범위 밖으로 $100 환불">
+          <defs>
+            <marker id="arr4" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+              <path d="M 0 1 L 9 5 L 0 9 z" fill="currentColor"/>
+            </marker>
+            <marker id="arrN4" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6.5" markerHeight="6.5" orient="auto-start-reverse">
+              <path d="M 0 1 L 9 5 L 0 9 z" fill="var(--navy)"/>
+            </marker>
+          </defs>
+
+          <text x="24" y="24" font-family="Noto Sans KR, sans-serif" font-size="13" font-weight="700" fill="var(--red)">블록 1 체결가 $10</text>
+
+          <line x1="16" y1="118" x2="834" y2="118" stroke="var(--line-soft)" stroke-width="1"/>
+          <line x1="16" y1="214" x2="834" y2="214" stroke="var(--line-soft)" stroke-width="1"/>
+
+          <!-- A 레인: 단가 $10 × 10개 -->
+          <rect x="24" y="44" width="170" height="52" rx="3" fill="var(--paper)" stroke="var(--cell-edge)" stroke-width="1.2"/>
+          <text x="38" y="65" font-family="Noto Sans KR, sans-serif" font-size="14" font-weight="700" fill="var(--ink)">A — $100</text>
+          <text x="38" y="85" font-family="Noto Sans KR, sans-serif" font-size="12" fill="var(--ink-2)">최대 $20</text>
+
+          <line x1="194" y1="70" x2="234" y2="70" stroke="var(--navy)" stroke-width="1.2" marker-end="url(#arrN4)"/>
+
+          <g fill="var(--cell)" stroke="var(--cell-edge)" stroke-width="0.8">
+            <rect x="240" y="53" width="16" height="16" rx="2"/><rect x="259" y="53" width="16" height="16" rx="2"/><rect x="278" y="53" width="16" height="16" rx="2"/><rect x="297" y="53" width="16" height="16" rx="2"/><rect x="316" y="53" width="16" height="16" rx="2"/>
+            <rect x="240" y="72" width="16" height="16" rx="2"/><rect x="259" y="72" width="16" height="16" rx="2"/><rect x="278" y="72" width="16" height="16" rx="2"/><rect x="297" y="72" width="16" height="16" rx="2"/><rect x="316" y="72" width="16" height="16" rx="2"/>
+          </g>
+          <text x="348" y="75" font-family="Noto Sans KR, sans-serif" font-size="13" fill="var(--ink-2)"><tspan font-weight="700" fill="var(--navy)">10개</tspan> · 단가 <tspan font-weight="700" fill="var(--red)">$10</tspan> · $100 전액 사용</text>
+
+          <!-- B 레인: 0개, $100 이월 -->
+          <rect x="24" y="134" width="170" height="52" rx="3" fill="var(--paper)" stroke="var(--cell-edge)" stroke-width="1.2"/>
+          <text x="38" y="155" font-family="Noto Sans KR, sans-serif" font-size="14" font-weight="700" fill="var(--ink)">B — $100</text>
+          <text x="38" y="175" font-family="Noto Sans KR, sans-serif" font-size="12" fill="var(--ink-2)">최대 $10</text>
+
+          <line x1="194" y1="160" x2="234" y2="160" stroke="currentColor" stroke-width="1.2" marker-end="url(#arr4)"/>
+
+          <rect x="240" y="144" width="56" height="32" rx="2" fill="none" stroke="var(--line)" stroke-width="1" stroke-dasharray="4 3"/>
+          <text x="268" y="165" text-anchor="middle" font-family="Noto Sans KR, sans-serif" font-size="12.5" fill="var(--ink-3)">0개</text>
+
+          <text x="335" y="150" text-anchor="middle" font-family="Noto Sans KR, sans-serif" font-size="12" font-weight="700" fill="var(--navy)">이월 $100</text>
+          <line x1="302" y1="160" x2="368" y2="160" stroke="var(--navy)" stroke-width="1.2" marker-end="url(#arrN4)"/>
+
+          <g>
+            <rect x="380" y="144" width="44" height="32" rx="2" fill="var(--paper)" stroke="var(--cell-edge)" stroke-width="1.2"/>
+            <text x="402" y="164" text-anchor="middle" font-family="Noto Sans KR, sans-serif" font-size="11" font-weight="700" fill="var(--navy)">$11.1</text>
+            <text x="402" y="196" text-anchor="middle" font-family="Noto Sans KR, sans-serif" font-size="11" fill="var(--ink-3)">2</text>
+
+            <rect x="430" y="144" width="44" height="32" rx="2" fill="var(--paper)" stroke="var(--cell-edge)" stroke-width="1.2"/>
+            <text x="452" y="164" text-anchor="middle" font-family="Noto Sans KR, sans-serif" font-size="11" font-weight="700" fill="var(--navy)">$11.1</text>
+            <text x="452" y="196" text-anchor="middle" font-family="Noto Sans KR, sans-serif" font-size="11" fill="var(--ink-3)">3</text>
+
+            <rect x="480" y="144" width="44" height="32" rx="2" fill="var(--paper)" stroke="var(--cell-edge)" stroke-width="1.2"/>
+            <text x="502" y="164" text-anchor="middle" font-family="Noto Sans KR, sans-serif" font-size="11" font-weight="700" fill="var(--navy)">$11.1</text>
+            <text x="502" y="196" text-anchor="middle" font-family="Noto Sans KR, sans-serif" font-size="11" fill="var(--ink-3)">4</text>
+
+            <rect x="530" y="144" width="44" height="32" rx="2" fill="var(--paper)" stroke="var(--cell-edge)" stroke-width="1.2"/>
+            <text x="552" y="164" text-anchor="middle" font-family="Noto Sans KR, sans-serif" font-size="11" font-weight="700" fill="var(--navy)">$11.1</text>
+            <text x="552" y="196" text-anchor="middle" font-family="Noto Sans KR, sans-serif" font-size="11" fill="var(--ink-3)">5</text>
+
+            <rect x="580" y="144" width="44" height="32" rx="2" fill="var(--paper)" stroke="var(--cell-edge)" stroke-width="1.2"/>
+            <text x="602" y="164" text-anchor="middle" font-family="Noto Sans KR, sans-serif" font-size="11" font-weight="700" fill="var(--navy)">$11.1</text>
+            <text x="602" y="196" text-anchor="middle" font-family="Noto Sans KR, sans-serif" font-size="11" fill="var(--ink-3)">6</text>
+
+            <rect x="630" y="144" width="44" height="32" rx="2" fill="var(--paper)" stroke="var(--cell-edge)" stroke-width="1.2"/>
+            <text x="652" y="164" text-anchor="middle" font-family="Noto Sans KR, sans-serif" font-size="11" font-weight="700" fill="var(--navy)">$11.1</text>
+            <text x="652" y="196" text-anchor="middle" font-family="Noto Sans KR, sans-serif" font-size="11" fill="var(--ink-3)">7</text>
+
+            <rect x="680" y="144" width="44" height="32" rx="2" fill="var(--paper)" stroke="var(--cell-edge)" stroke-width="1.2"/>
+            <text x="702" y="164" text-anchor="middle" font-family="Noto Sans KR, sans-serif" font-size="11" font-weight="700" fill="var(--navy)">$11.1</text>
+            <text x="702" y="196" text-anchor="middle" font-family="Noto Sans KR, sans-serif" font-size="11" fill="var(--ink-3)">8</text>
+
+            <rect x="730" y="144" width="44" height="32" rx="2" fill="var(--paper)" stroke="var(--cell-edge)" stroke-width="1.2"/>
+            <text x="752" y="164" text-anchor="middle" font-family="Noto Sans KR, sans-serif" font-size="11" font-weight="700" fill="var(--navy)">$11.1</text>
+            <text x="752" y="196" text-anchor="middle" font-family="Noto Sans KR, sans-serif" font-size="11" fill="var(--ink-3)">9</text>
+
+            <rect x="780" y="144" width="44" height="32" rx="2" fill="var(--paper)" stroke="var(--cell-edge)" stroke-width="1.2"/>
+            <text x="802" y="164" text-anchor="middle" font-family="Noto Sans KR, sans-serif" font-size="11" font-weight="700" fill="var(--navy)">$11.1</text>
+            <text x="802" y="196" text-anchor="middle" font-family="Noto Sans KR, sans-serif" font-size="11" fill="var(--ink-3)">10</text>
+          </g>
+
+          <!-- C 레인: 0개, 환불 -->
+          <rect x="24" y="229" width="170" height="52" rx="3" fill="var(--paper)" stroke="var(--line)" stroke-width="1.2"/>
+          <text x="38" y="250" font-family="Noto Sans KR, sans-serif" font-size="14" font-weight="700" fill="var(--ink-3)">C — $100</text>
+          <text x="38" y="270" font-family="Noto Sans KR, sans-serif" font-size="12" fill="var(--ink-3)">최대 $5</text>
+
+          <line x1="194" y1="255" x2="234" y2="255" stroke="currentColor" stroke-width="1.2" marker-end="url(#arr4)"/>
+
+          <rect x="240" y="239" width="56" height="32" rx="2" fill="none" stroke="var(--line)" stroke-width="1" stroke-dasharray="4 3"/>
+          <text x="268" y="260" text-anchor="middle" font-family="Noto Sans KR, sans-serif" font-size="12.5" fill="var(--ink-3)">0개</text>
+
+          <text x="335" y="245" text-anchor="middle" font-family="Noto Sans KR, sans-serif" font-size="11.5" fill="var(--ink-3)">범위 밖</text>
+          <line x1="302" y1="255" x2="368" y2="255" stroke="currentColor" stroke-width="1.2" marker-end="url(#arr4)"/>
+
+          <rect x="380" y="237" width="130" height="36" rx="2" fill="none" stroke="var(--line)" stroke-width="1"/>
+          <text x="445" y="260" text-anchor="middle" font-family="Noto Sans KR, sans-serif" font-size="13" font-weight="700" fill="var(--ink)">$100 환불</text>
+        </svg>
+      </div>
+    </figure>
+  </section>
+
+  <section>
+    <p class="sec">요약</p>
+    <table class="sum-table">
+      <tr>
+        <td class="cat">재단 설정</td>
+        <td>시작 가격 · 경매 길이(블록 수) · 블록당 할당량을 사전 확정. 경매 시작 후 변경 불가</td>
+      </tr>
+      <tr>
+        <td class="cat">참여 방식</td>
+        <td>예산과 최대가격만 제시. 이후 블록별 분산과 체결은 프로토콜이 자동 처리</td>
+      </tr>
+      <tr>
+        <td class="cat">조기 참여</td>
+        <td>일찍 넣을수록 낮은 가격의 블록부터 참여 가능. 단, 최대가격이 체결 가격보다 낮아지면 할당 배제</td>
+      </tr>
+      <tr>
+        <td class="cat">지불 가격</td>
+        <td>지불가 = 각 블록의 체결 가격(체결자 전원 동일). 내 최대가격은 상한일 뿐, 그대로 지불하는 값이 아님</td>
+      </tr>
+      <tr>
+        <td class="cat">가격 방향</td>
+        <td>체결 가격은 오르거나 유지될 뿐 내려가지 않음. 한번 밀려난 입찰은 영구 미체결, 재진입은 현재 체결 가격보다 높은 신규 입찰로만 가능</td>
+      </tr>
+    </table>
+  </section>
+  </div>
+
+  <div class="cat-page" id="cat-umia">
+
+  <section>
+    <p class="sec">프로젝트 정보</p>
+    <div class="assume two">
+      <div class="cell">
+        <p class="k">카테고리</p>
+        <p class="vt">온체인 VC · EVM 버전 메타다오</p>
+      </div>
+      <div class="cell">
+        <p class="k">주요 투자</p>
+        <p class="vt">Delphi Ventures $4.6M (2024)</p>
+      </div>
+    </div>
+    <p class="assume-label" style="margin:22px 0 6px">토크노믹스</p>
+    <table class="sum-table dense">
+      <tr>
+        <td class="h">배정</td><td class="h num">수량</td><td class="h num">비중</td><td class="h num">초기 유통 (Total %)</td>
+      </tr>
+      <tr><td class="cat">공개 CCA</td><td class="num">1,730만</td><td class="num">34.6%</td><td class="num">34.6%</td></tr>
+      <tr><td class="cat">기존 백커</td><td class="num">1,015만</td><td class="num">20.3%</td><td class="num zero">0%</td></tr>
+      <tr><td class="cat">프로토콜 트레저리</td><td class="num">310만</td><td class="num">6.2%</td><td class="num">6.2%</td></tr>
+      <tr><td class="cat">Uniswap 유동성</td><td class="num">345만</td><td class="num">6.9%</td><td class="num">6.9%</td></tr>
+      <tr><td class="cat">서비스 제공자</td><td class="num">300만</td><td class="num">6.0%</td><td class="num zero">0%</td></tr>
+      <tr><td class="cat">팀</td><td class="num">250만</td><td class="num">5.0%</td><td class="num">1.25%</td></tr>
+      <tr><td class="cat">인센티브</td><td class="num">50만</td><td class="num">1.0%</td><td class="num">1.0%</td></tr>
+      <tr><td class="cat">성과보상 준비금</td><td class="num">1,000만</td><td class="num">20.0%</td><td class="num zero">0%</td></tr>
+      <tr class="total"><td>초기 유통 합계</td><td class="num">2,497.5만</td><td class="num"></td><td class="num">50.0%</td></tr>
+    </table>
+    <p class="tbl-note">런칭 시 공급량 4,000만 개 · 성과보상 준비금 1,000만 개는 가격 2배·5배·10배·20배·50배 달성 시 단계적 해제</p>
+  </section>
+
+  <section>
+    <p class="sec">세일 정보</p>
+    <ul class="info-list">
+      <li>체인: Base</li>
+      <li>결제 통화: USDC</li>
+      <li>베스팅: 없음 · 판매분 전량 언락</li>
+      <li>가격: $0.12 (FDV $6M) 시작 · <mark class="hl">가격 상한 캡 $0.36 ($18M)</mark></li>
+    </ul>
+  </section>
+
+  <section>
+    <p class="sec">일정 — 한국시간</p>
+    <figure>
+      <div class="fig-scroll">
+        <svg viewBox="0 0 850 105" role="img" aria-label="UMIA 세일 타임라인: 8월 27일 01시 얼리 비드 시작, 8월 29일 21시 퍼블릭 오픈, 9월 2일 21시 경매 종료, 이후 UMIA 수령과 v4 거래 개시">
+          <!-- 이벤트 이름 -->
+          <g font-family="Noto Sans KR, sans-serif" font-size="12" font-weight="700" fill="var(--ink)">
+            <text x="40" y="38">얼리 비드 시작</text>
+            <text x="272" y="38" text-anchor="middle">퍼블릭 오픈</text>
+            <text x="600" y="38" text-anchor="middle">경매 종료</text>
+            <text x="726" y="38" text-anchor="middle" fill="var(--ink-2)" font-weight="500">UMIA 수령 · v4 거래 개시</text>
+          </g>
+
+          <!-- 타임라인 -->
+          <line x1="40" y1="60" x2="600" y2="60" stroke="var(--navy)" stroke-width="2"/>
+          <line x1="600" y1="60" x2="726" y2="60" stroke="var(--line)" stroke-width="2" stroke-dasharray="5 4"/>
+
+          <circle cx="40" cy="60" r="6" fill="var(--navy)"/>
+          <circle cx="272" cy="60" r="6" fill="var(--navy)"/>
+          <circle cx="600" cy="60" r="6" fill="var(--navy)"/>
+          <circle cx="726" cy="60" r="6" fill="var(--paper)" stroke="var(--navy)" stroke-width="2"/>
+
+          <!-- 날짜 · 구간 성격 -->
+          <g font-family="Noto Sans KR, sans-serif" font-size="11.5" fill="var(--ink-3)">
+            <text x="40" y="86">08-27 (목) 01:00</text>
+            <text x="272" y="86" text-anchor="middle">08-29 (토) 21:00</text>
+            <text x="600" y="86" text-anchor="middle">09-02 (수) 21:00</text>
+            <text x="726" y="86" text-anchor="middle" font-weight="700" fill="var(--navy)">09-02 (TGE)</text>
+            <text x="156" y="86" text-anchor="middle" fill="var(--cell-edge)">자격 지갑만</text>
+            <text x="436" y="86" text-anchor="middle" fill="var(--cell-edge)">전체 공개</text>
+          </g>
+        </svg>
+      </div>
+    </figure>
+  </section>
+
+  <section>
+    <p class="sec">얼리 비드</p>
+    <ul class="info-list">
+      <li>별도 가격의 프리세일이 아니라, 하나의 7일 경매에서 첫 3일을 자격 지갑에 우선 개방하는 구조</li>
+      <li>물량 역시 분리 세일이 아니며, 전체 물량이 얼리·퍼블릭 두 구간에 나뉘어 배정되고 입금액도 이에 따라 두 구간에 자동 배분</li>
+    </ul>
+    <figure style="margin:18px 0">
+      <div class="fig-scroll">
+        <svg viewBox="0 0 850 160" role="img" aria-label="$7,000 입금 시 얼리 세일에 $3,000(43%), 퍼블릭에 $4,000(57%)이 자동 배분되는 구조">
+          <defs>
+            <marker id="arrNE" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6.5" markerHeight="6.5" orient="auto-start-reverse">
+              <path d="M 0 1 L 9 5 L 0 9 z" fill="var(--navy)"/>
+            </marker>
+          </defs>
+
+          <rect x="24" y="54" width="140" height="48" rx="3" fill="var(--paper)" stroke="var(--navy)" stroke-width="1.5"/>
+          <text x="94" y="74" text-anchor="middle" font-family="Noto Sans KR, sans-serif" font-size="11.5" fill="var(--ink-2)">입금</text>
+          <text x="94" y="93" text-anchor="middle" font-family="Noto Sans KR, sans-serif" font-size="15" font-weight="700" fill="var(--navy)">$7,000</text>
+
+          <g stroke="var(--navy)" stroke-width="1.5" fill="none">
+            <line x1="164" y1="78" x2="200" y2="78"/>
+            <line x1="200" y1="42" x2="200" y2="114"/>
+            <line x1="200" y1="42" x2="240" y2="42" marker-end="url(#arrNE)"/>
+            <line x1="200" y1="114" x2="240" y2="114" marker-end="url(#arrNE)"/>
+          </g>
+
+          <rect x="248" y="20" width="210" height="44" rx="3" fill="var(--cell)" stroke="var(--cell-edge)" stroke-width="1"/>
+          <text x="262" y="47" font-family="Noto Sans KR, sans-serif" font-size="13" font-weight="700" fill="var(--ink)">얼리 세일</text>
+          <text x="444" y="47" text-anchor="end" font-family="Noto Sans KR, sans-serif" font-size="13.5" font-weight="700" fill="var(--navy)">$3,000</text>
+          <text x="470" y="47" font-family="Noto Sans KR, sans-serif" font-size="11.5" fill="var(--ink-3)">43%</text>
+          <text x="248" y="82" font-family="Noto Sans KR, sans-serif" font-size="11.5" fill="var(--ink-3)">첫 3일 · 자격 지갑만</text>
+
+          <rect x="248" y="92" width="280" height="44" rx="3" fill="var(--navy)"/>
+          <text x="262" y="119" font-family="Noto Sans KR, sans-serif" font-size="13" font-weight="700" fill="#FFFFFF">퍼블릭</text>
+          <text x="514" y="119" text-anchor="end" font-family="Noto Sans KR, sans-serif" font-size="13.5" font-weight="700" fill="#FFFFFF">$4,000</text>
+          <text x="540" y="119" font-family="Noto Sans KR, sans-serif" font-size="11.5" fill="var(--ink-3)">57%</text>
+          <text x="248" y="154" font-family="Noto Sans KR, sans-serif" font-size="11.5" fill="var(--ink-3)">이후 4일 · 전체 공개</text>
+        </svg>
+      </div>
+    </figure>
+    <ul class="info-list">
+      <li>가격 할인은 없으며, 동일한 CCA 내에서 우선 입찰 권한만 부여</li>
+      <li>자격 인증: zkTLS 기반 비공개 인증</li>
+      <li>대상: MetaDAO · Kleros 의사결정 참여자, Echo 투자자 · 일부 온체인 투자자, ETHGlobal 해커톤 참가자 등</li>
+    </ul>
+  </section>
+
+  </div>
+
+  <div class="cat-page" id="cat-case">
+
+  <section>
+    <p class="sec">대상 세일</p>
+    <table class="sum-table dense">
+      <tr>
+        <td class="h">케이스</td><td class="h">기간 (KST)</td><td class="h">결제</td><td class="h">카테고리</td><td class="h">누적 펀딩</td><td class="h">대표 투자자·리드</td><td class="h">업비트 KRW</td>
+      </tr>
+      <tr>
+        <td class="cat">AZTEC</td><td>2025-11-13 → 12-07</td><td>ETH</td><td>프라이버시</td><td>$119.1M</td><td>a16z crypto</td><td class="ox-o">O</td>
+      </tr>
+      <tr>
+        <td class="cat">CAP</td><td>2026-06-09 → 06-18</td><td>USDC</td><td>스테이블코인</td><td>$11M</td><td>Franklin Templeton</td><td class="ox-o">O</td>
+      </tr>
+      <tr>
+        <td class="cat">OCTRA</td><td>2026-04-13 → 04-20</td><td>ETH</td><td>프라이버시</td><td>$4M + Echo $4M(보도)</td><td>Finality Capital</td><td class="ox-x">X</td>
+      </tr>
+      <tr>
+        <td class="cat">FOLD 1차</td><td>2026-07-06 → 07-10</td><td>ETH</td><td>프라이버시</td><td>약 $2.25M</td><td>리드 비공개</td><td class="ox-o">O</td>
+      </tr>
+      <tr>
+        <td class="cat">FOLD 2차</td><td>2026-08-17 → 08-19</td><td>USDC</td><td>프라이버시</td><td>약 $2.25M</td><td>리드 비공개</td><td class="ox-o">O</td>
+      </tr>
+    </table>
+    <p class="tbl-note">주: FOLD의 첫 CEX 상장은 업비트 — 업비트가 CCA 세일 출신을 주시하고 있다는 신호.</p>
+  </section>
+
+  <section>
+    <p class="sec">가격 경로 — FDV</p>
+    <figure>
+      <div class="fig-scroll">
+        <svg viewBox="0 0 850 830" role="img" aria-label="온체인 체크포인트 기반 세일별 체결 가격(FDV, USDC) 시계열: AZTEC $296M→$483M, CAP $75M→$106.5M, OCTRA $0→$29.0M, FOLD 1차 $25.5M 유지, FOLD 2차 $25.86M→$26.89M">
+          <line x1="16" y1="12" x2="44" y2="12" stroke="var(--navy)" stroke-width="2"/>
+          <text x="50" y="16" font-family="Noto Sans KR, sans-serif" font-size="11.5" fill="var(--ink-2)">체결 가격 (FDV)</text>
+          <line x1="160" y1="12" x2="188" y2="12" stroke="var(--red)" stroke-width="1.5" stroke-dasharray="5 3"/>
+          <text x="194" y="16" font-family="Noto Sans KR, sans-serif" font-size="11.5" fill="var(--ink-2)">평균 실현가</text>
+          <text x="834" y="16" text-anchor="end" font-family="Noto Sans KR, sans-serif" font-size="11" fill="var(--ink-3)">ETH→USDC 환산: AZTEC $3,006 · OCTRA $2,344 · FOLD 1차 $1,770 (경매기간 일평균)</text>
+          <text x="16" y="40" font-family="Noto Sans KR, sans-serif" font-size="13" font-weight="700" fill="var(--ink)">AZTEC — FDV (USDC 환산)</text>
+          <line x1="70" y1="209.6" x2="400" y2="209.6" stroke="var(--line-soft)" stroke-width="1"/>
+          <text x="64" y="213.6" text-anchor="end" font-family="Noto Sans KR, sans-serif" font-size="11" fill="var(--ink-3)">296M</text>
+          <line x1="70" y1="140" x2="400" y2="140" stroke="var(--line-soft)" stroke-width="1"/>
+          <text x="64" y="144" text-anchor="end" font-family="Noto Sans KR, sans-serif" font-size="11" fill="var(--ink-3)">389M</text>
+          <line x1="70" y1="70.4" x2="400" y2="70.4" stroke="var(--line-soft)" stroke-width="1"/>
+          <text x="64" y="74.4" text-anchor="end" font-family="Noto Sans KR, sans-serif" font-size="11" fill="var(--ink-3)">483M</text>
+          <line x1="70" y1="218" x2="400" y2="218" stroke="currentColor" stroke-width="1"/>
+          <text x="70" y="236" font-family="Noto Sans KR, sans-serif" font-size="11" fill="var(--ink-3)">11-13</text>
+          <text x="235" y="236" text-anchor="middle" font-family="Noto Sans KR, sans-serif" font-size="11" fill="var(--ink-3)">11-25</text>
+          <text x="400" y="236" text-anchor="end" font-family="Noto Sans KR, sans-serif" font-size="11" fill="var(--ink-3)">12-07</text>
+          <line x1="70" y1="129" x2="400" y2="129" stroke="var(--red)" stroke-width="1.2" stroke-dasharray="5 3"/>
+          <text x="400" y="143" text-anchor="end" font-family="Noto Sans KR, sans-serif" font-size="11" font-weight="700" fill="var(--red)">평균 404M</text>
+          <path d="M 70.5 209.6 H 71.5 V 209.6 H 72.5 V 209.6 H 73.5 V 209.6 H 74.5 V 209.6 H 75.5 V 209.6 H 76.5 V 209.6 H 77.5 V 209.6 H 78.4 V 209.6 H 79.5 V 209.6 H 80.5 V 209.6 H 81.4 V 209.6 H 82.5 V 209.6 H 83.5 V 209.6 H 84.5 V 209.6 H 85.5 V 209.6 H 86.5 V 209.6 H 87.4 V 209.6 H 88.4 V 209.6 H 89.4 V 209.6 H 90.4 V 209.6 H 91.5 V 209.6 H 92.5 V 209.6 H 93.4 V 209.6 H 94.4 V 209.6 H 95.5 V 209.6 H 96.5 V 209.6 H 97.5 V 209.6 H 98.5 V 209.6 H 99.2 V 209.6 H 100.4 V 209.6 H 101.5 V 209.6 H 102.3 V 209.6 H 103.5 V 209.6 H 104.5 V 209.6 H 105.1 V 209.6 H 106.3 V 209.6 H 107.5 V 209.6 H 108.1 V 209.6 H 109.4 V 209.6 H 110.5 V 209.6 H 111.5 V 209.6 H 112.5 V 209.6 H 113.5 V 209.6 H 114.5 V 209.6 H 115.4 V 209.6 H 116.1 V 209.6 H 117.5 V 209.6 H 118.3 V 209.6 H 119.2 V 209.6 H 120.5 V 209.6 H 121.5 V 209.6 H 122.3 V 209.6 H 123.4 V 209.6 H 124.5 V 209.6 H 125.4 V 209.6 H 126.5 V 209.6 H 127.3 V 209.6 H 128.4 V 209.6 H 129.5 V 209.6 H 130.5 V 209.6 H 131.2 V 209.6 H 132.5 V 209.6 H 133.5 V 209.6 H 134.2 V 209.6 H 135.2 V 209.6 H 136.5 V 209.6 H 137.5 V 209.6 H 138.5 V 209.6 H 139.5 V 209.6 H 140.4 V 209.6 H 141.5 V 209.6 H 142.4 V 209.6 H 143.5 V 209.6 H 144.5 V 209.6 H 145.5 V 209.6 H 146.5 V 209.6 H 147.5 V 209.6 H 148.4 V 209.6 H 149.4 V 209.6 H 150.4 V 209.6 H 151.5 V 209.6 H 152.4 V 209.6 H 153.5 V 209.6 H 154.5 V 209.6 H 155.5 V 209.6 H 156.5 V 209.6 H 157.2 V 209.6 H 158.4 V 209.6 H 159.4 V 209.6 H 160.4 V 209.6 H 161.5 V 209.6 H 162.4 V 209.6 H 163.4 V 209.6 H 164.5 V 209.6 H 165.4 V 209.6 H 166.4 V 209.6 H 167.5 V 209.6 H 168.5 V 209.6 H 169.5 V 209.6 H 170.5 V 209.6 H 171.2 V 209.6 H 172.1 V 209.6 H 173.5 V 209.6 H 174.5 V 209.6 H 175.5 V 209.6 H 176.4 V 209.6 H 177.3 V 209.6 H 178.3 V 209.6 H 179.5 V 209.6 H 180.5 V 209.6 H 181.5 V 209.6 H 182.3 V 209.6 H 183.3 V 209.6 H 184.5 V 209.6 H 185.4 V 209.6 H 186.4 V 209.6 H 187.1 V 209.6 H 188.2 V 209.6 H 189.4 V 209.6 H 190.4 V 209.6 H 191.4 V 209.6 H 192.4 V 209.6 H 193.5 V 209.6 H 194.5 V 209.6 H 195.5 V 209.6 H 196.5 V 209.6 H 197.5 V 209.6 H 198.5 V 209.6 H 199.5 V 209.6 H 200.4 V 209.6 H 201.3 V 209.6 H 202.4 V 209.6 H 203.2 V 209.6 H 204.4 V 209.6 H 205.4 V 209.6 H 206.2 V 209.6 H 207.3 V 209.6 H 208.5 V 209.6 H 209.3 V 209.6 H 210.5 V 209.6 H 211.4 V 209.6 H 212.5 V 209.6 H 213.5 V 209.6 H 214.4 V 209.6 H 215.5 V 209.6 H 216.5 V 209.6 H 217.5 V 209.6 H 218.4 V 209.6 H 219.5 V 209.6 H 220 V 209.6 H 221.4 V 209.6 H 222.5 V 209.6 H 223.5 V 209.6 H 224.5 V 209.6 H 225.5 V 209.6 H 226.5 V 209.6 H 227.5 V 209.6 H 228.5 V 209.6 H 229.5 V 209.6 H 230.5 V 209.6 H 231.5 V 209.6 H 232.5 V 209.6 H 233.5 V 209.6 H 234.3 V 209.6 H 235.5 V 209.6 H 236.4 V 209.6 H 237.5 V 209.6 H 238.3 V 209.6 H 239.5 V 209.6 H 240.5 V 209.6 H 241.5 V 209.6 H 242.4 V 209.6 H 243.5 V 209.6 H 244.5 V 209.6 H 245.5 V 209.6 H 246.4 V 209.6 H 247.5 V 209.6 H 248.4 V 209.6 H 249.4 V 209.6 H 250.5 V 209.6 H 251.5 V 209.6 H 252.5 V 209.6 H 253.5 V 209.6 H 254.5 V 209.6 H 255.5 V 209.6 H 256.5 V 209.6 H 257.5 V 209.6 H 258.5 V 209.6 H 259.5 V 209.6 H 260.5 V 209.6 H 261.5 V 209.6 H 262.5 V 209.6 H 263.4 V 209.6 H 264.5 V 209.6 H 265.5 V 209.6 H 266.5 V 209.6 H 267.5 V 209.6 H 268.5 V 209.6 H 269.5 V 209.6 H 270.5 V 209.6 H 271.5 V 209.6 H 272.5 V 209.6 H 273.5 V 209.6 H 274.5 V 209.6 H 275.5 V 209.6 H 276.5 V 209.6 H 277.5 V 209.6 H 278.5 V 209.6 H 279.5 V 209.6 H 280.5 V 209.6 H 281.5 V 209.6 H 282.5 V 209.6 H 283.5 V 209.6 H 284.5 V 209.6 H 285.5 V 209.6 H 286.5 V 209.6 H 287.5 V 209.6 H 288.5 V 209.6 H 289.5 V 209.6 H 290.4 V 209.6 H 291.5 V 209.6 H 292.5 V 209.6 H 293.5 V 209.6 H 294.5 V 209.6 H 295.5 V 209.6 H 296.4 V 209.6 H 297.5 V 209.6 H 298.5 V 209.6 H 299.5 V 209.6 H 300.5 V 209.6 H 301.5 V 209.6 H 302.5 V 209.6 H 303.5 V 209.6 H 304.5 V 209.6 H 305.5 V 209.6 H 306.5 V 209.6 H 307.5 V 209.6 H 308.5 V 209.6 H 309.5 V 209.6 H 310.5 V 209.6 H 311.5 V 209.6 H 312.5 V 209.6 H 313.5 V 209.6 H 314.5 V 209.6 H 315.5 V 209.6 H 316.5 V 209.6 H 317.5 V 209.6 H 318.5 V 209.6 H 319.5 V 209.6 H 320.5 V 209.6 H 321.5 V 209.6 H 322.5 V 209.6 H 323.5 V 209.6 H 324.5 V 209.6 H 325.5 V 209.6 H 326.5 V 209.6 H 327.5 V 209.6 H 328.5 V 209.6 H 329.5 V 209.6 H 330.5 V 209.6 H 331.5 V 209.6 H 332.5 V 209.6 H 333.5 V 209.6 H 334.5 V 209.6 H 335.5 V 209.6 H 336.5 V 209.6 H 337.5 V 209.6 H 338.5 V 209.6 H 339.5 V 209.6 H 340.5 V 209.6 H 341.5 V 209.6 H 342.5 V 207.4 H 343.5 V 200.8 H 344.5 V 200 H 345.5 V 199 H 346.5 V 198.6 H 347.5 V 198.6 H 348.5 V 198.6 H 349.5 V 198.6 H 350.5 V 192 H 351.5 V 192 H 352.5 V 185.3 H 353.5 V 183.1 H 354.5 V 183.1 H 355.5 V 178.7 H 356.5 V 176.5 H 357.5 V 176.5 H 358.5 V 173.7 H 359.5 V 172.1 H 360.5 V 172.1 H 361.5 V 171.4 H 362.5 V 169.8 H 363.5 V 169.8 H 364.5 V 167.6 H 365.5 V 165.4 H 366.5 V 163.7 H 367.5 V 158.8 H 368.5 V 152.4 H 369.5 V 152.2 H 370.5 V 149.9 H 371.5 V 147.7 H 372.5 V 147.7 H 373.5 V 147.7 H 374.5 V 147.7 H 375.5 V 144.7 H 376.5 V 143.3 H 377.5 V 143.3 H 378.5 V 141.1 H 379.5 V 139.1 H 380.5 V 138.9 H 381.5 V 136.7 H 382.5 V 134.5 H 383.5 V 134.5 H 384.5 V 132.3 H 385.5 V 132.3 H 386.5 V 131.2 H 387.5 V 130.1 H 388.5 V 130.1 H 389.5 V 130.1 H 390.5 V 130.1 H 391.5 V 119 H 392.5 V 114.9 H 393.5 V 112.4 H 394.5 V 107.9 H 395.5 V 107.9 H 396.5 V 107.7 H 397.5 V 103.8 H 398.5 V 95.9 H 399.5 V 84.9 H 400 V 70.4 H 400" fill="none" stroke="var(--navy)" stroke-width="2" stroke-linejoin="round"/>
+          <text x="400" y="63.400000000000006" text-anchor="end" font-family="Noto Sans KR, sans-serif" font-size="11.5" font-weight="700" fill="var(--navy)">483M</text>
+          <text x="434" y="40" font-family="Noto Sans KR, sans-serif" font-size="13" font-weight="700" fill="var(--ink)">CAP — FDV (USDC)</text>
+          <line x1="488" y1="209.6" x2="818" y2="209.6" stroke="var(--line-soft)" stroke-width="1"/>
+          <text x="482" y="213.6" text-anchor="end" font-family="Noto Sans KR, sans-serif" font-size="11" fill="var(--ink-3)">75.0M</text>
+          <line x1="488" y1="140" x2="818" y2="140" stroke="var(--line-soft)" stroke-width="1"/>
+          <text x="482" y="144" text-anchor="end" font-family="Noto Sans KR, sans-serif" font-size="11" fill="var(--ink-3)">90.8M</text>
+          <line x1="488" y1="70.4" x2="818" y2="70.4" stroke="var(--line-soft)" stroke-width="1"/>
+          <text x="482" y="74.4" text-anchor="end" font-family="Noto Sans KR, sans-serif" font-size="11" fill="var(--ink-3)">106.5M</text>
+          <line x1="488" y1="218" x2="818" y2="218" stroke="currentColor" stroke-width="1"/>
+          <text x="488" y="236" font-family="Noto Sans KR, sans-serif" font-size="11" fill="var(--ink-3)">06-09</text>
+          <text x="653" y="236" text-anchor="middle" font-family="Noto Sans KR, sans-serif" font-size="11" fill="var(--ink-3)">06-13</text>
+          <text x="818" y="236" text-anchor="end" font-family="Noto Sans KR, sans-serif" font-size="11" fill="var(--ink-3)">06-18</text>
+          <line x1="488" y1="116.5" x2="818" y2="116.5" stroke="var(--red)" stroke-width="1.2" stroke-dasharray="5 3"/>
+          <text x="818" y="130.5" text-anchor="end" font-family="Noto Sans KR, sans-serif" font-size="11" font-weight="700" fill="var(--red)">평균 96.1M</text>
+          <path d="M 488.5 209.6 H 489.2 V 209.6 H 490.4 V 209.6 H 490.9 V 209.6 H 492.4 V 209.6 H 493.4 V 209.6 H 495.4 V 209.6 H 496.1 V 209.6 H 497.2 V 209.6 H 498.5 V 209.6 H 498.6 V 209.6 H 500.4 V 209.6 H 501.5 V 209.6 H 501.5 V 209.6 H 502.8 V 209.6 H 504.3 V 209.6 H 505.4 V 209.6 H 506.4 V 209.6 H 507 V 209.6 H 508.5 V 209.6 H 509.3 V 209.6 H 509.8 V 209.6 H 511.4 V 209.6 H 512.2 V 209.6 H 513.1 V 209.6 H 514.2 V 209.6 H 514.7 V 209.6 H 516.4 V 209.6 H 517.4 V 209.6 H 517.6 V 209.6 H 519.3 V 209.6 H 520.1 V 209.6 H 522.1 V 209.6 H 523.3 V 209.6 H 525.2 V 209.6 H 526.4 V 209.6 H 527.1 V 209.6 H 527.6 V 209.6 H 528.9 V 209.6 H 530.5 V 209.6 H 531.2 V 209.6 H 531.7 V 209.6 H 535.4 V 209.6 H 536.5 V 209.6 H 537.5 V 209.6 H 537.7 V 209.6 H 539.1 V 209.6 H 540.3 V 209.6 H 541 V 209.6 H 541.6 V 209.6 H 543.3 V 209.6 H 544.4 V 209.6 H 545.4 V 209.6 H 546.4 V 209.6 H 547.1 V 209.6 H 548.5 V 209.6 H 549.3 V 209.6 H 550.5 V 209.6 H 551.2 V 209.6 H 552.4 V 209.6 H 552.9 V 209.6 H 554.4 V 209.6 H 555.4 V 209.6 H 556.5 V 209.6 H 557.4 V 209.6 H 558.4 V 209.6 H 559.4 V 209.6 H 560.4 V 206.3 H 561.4 V 206.3 H 562.3 V 206.3 H 563.1 V 206.3 H 564.4 V 206.3 H 564.7 V 206.3 H 565.9 V 206.3 H 566.9 V 206.3 H 567.9 V 206.3 H 569.5 V 206.3 H 569.8 V 206.3 H 571.7 V 206.3 H 573.4 V 206.3 H 574.2 V 206.3 H 575.8 V 206.3 H 577.6 V 206.3 H 579.4 V 206.3 H 580.4 V 206.3 H 581.8 V 206.3 H 584.3 V 206.3 H 584.6 V 206.3 H 587.5 V 206.3 H 588.5 V 206.3 H 590.5 V 206.3 H 593.5 V 206.3 H 595.7 V 206.3 H 597.9 V 206.3 H 598.7 V 206.3 H 601 V 206.3 H 604.4 V 206.3 H 606 V 206.3 H 607.1 V 206.3 H 607.9 V 206.3 H 609.5 V 206.3 H 609.9 V 206.3 H 612 V 206.3 H 612.8 V 206.3 H 615.4 V 206.3 H 618.2 V 206.3 H 619.2 V 206.3 H 620 V 206.3 H 621.2 V 206.3 H 621.9 V 206.3 H 625.1 V 206.3 H 625.6 V 206.3 H 626.9 V 206.3 H 629.4 V 206.3 H 630.4 V 206.3 H 630.7 V 206.3 H 632.4 V 206.3 H 633.1 V 206.3 H 635.5 V 203 H 636.5 V 203 H 637.4 V 203 H 638.4 V 203 H 639.4 V 203 H 639.5 V 203 H 641.5 V 203 H 642.4 V 203 H 643.4 V 203 H 644.4 V 203 H 645.2 V 203 H 647.5 V 203 H 648.2 V 203 H 649.3 V 203 H 650.2 V 203 H 651.1 V 203 H 652.2 V 203 H 653.2 V 203 H 655 V 203 H 656.4 V 203 H 656.6 V 203 H 658 V 203 H 658.8 V 203 H 659.6 V 203 H 662.6 V 203 H 664.4 V 203 H 665.5 V 199.7 H 666.5 V 199.7 H 667.4 V 199.7 H 668.4 V 199.7 H 668.5 V 199.7 H 670.1 V 199.7 H 671.5 V 199.7 H 671.8 V 199.7 H 672.8 V 199.7 H 674.2 V 199.7 H 674.7 V 199.7 H 677.3 V 199.7 H 681.1 V 199.7 H 681.9 V 199.7 H 682.5 V 199.7 H 683.6 V 199.7 H 685.2 V 199.7 H 687.8 V 199.7 H 689.5 V 186.4 H 690.4 V 186.4 H 691.4 V 186.4 H 692.4 V 186.4 H 693.1 V 186.4 H 693.9 V 186.4 H 695.5 V 183.1 H 696.5 V 183.1 H 697.5 V 93.6 H 698.5 V 91.3 H 699.4 V 90.3 H 700.5 V 90.3 H 701.5 V 90.3 H 702.4 V 90.3 H 703.5 V 90.3 H 704.5 V 90.3 H 705.5 V 90.3 H 706.5 V 90.3 H 707.5 V 90.3 H 707.9 V 90.3 H 709.2 V 90.3 H 710.4 V 90.3 H 711.5 V 90.3 H 711.7 V 90.3 H 713.4 V 90.3 H 714.1 V 90.3 H 715.4 V 90.3 H 716.3 V 90.3 H 717.3 V 90.3 H 717.7 V 90.3 H 718.6 V 90.3 H 720.3 V 90.3 H 721.2 V 90.3 H 721.6 V 90.3 H 723.2 V 90.3 H 724.3 V 90.3 H 725.5 V 90.3 H 726.5 V 90.3 H 727.1 V 90.3 H 729.5 V 86.9 H 730.4 V 77 H 731.2 V 77 H 732.3 V 77 H 733.4 V 77 H 734.3 V 77 H 735.4 V 77 H 736.5 V 77 H 737.2 V 77 H 738.2 V 77 H 739.4 V 77 H 740.2 V 77 H 741.2 V 77 H 742 V 77 H 743.3 V 77 H 744.3 V 77 H 745.3 V 77 H 745.7 V 77 H 746.8 V 77 H 748 V 77 H 749 V 77 H 750 V 77 H 751.5 V 77 H 751.7 V 77 H 753.9 V 77 H 755.4 V 77 H 755.5 V 77 H 759.3 V 77 H 760.4 V 77 H 761.1 V 77 H 761.6 V 77 H 763.3 V 77 H 764.9 V 77 H 767.1 V 77 H 768 V 77 H 769.1 V 77 H 771.3 V 77 H 772.5 V 77 H 772.9 V 77 H 774.4 V 77 H 775.2 V 77 H 779 V 77 H 780.4 V 77 H 781.1 V 77 H 782.2 V 77 H 783.9 V 77 H 784.9 V 77 H 786 V 77 H 797.9 V 77 H 803.8 V 77 H 805.1 V 77 H 806.5 V 77 H 806.6 V 77 H 808.5 V 77 H 809.5 V 77 H 810.5 V 77 H 811.5 V 73.7 H 812.2 V 73.7 H 813.3 V 70.4 H 814.3 V 70.4 H 815.4 V 70.4 H 816.3 V 70.4 H 817.5 V 70.4 H 818 V 70.4 H 818" fill="none" stroke="var(--navy)" stroke-width="2" stroke-linejoin="round"/>
+          <text x="818" y="63.400000000000006" text-anchor="end" font-family="Noto Sans KR, sans-serif" font-size="11.5" font-weight="700" fill="var(--navy)">106.5M</text>
+          <text x="16" y="302" font-family="Noto Sans KR, sans-serif" font-size="13" font-weight="700" fill="var(--ink)">OCTRA — FDV (USDC 환산)</text>
+          <line x1="70" y1="480" x2="400" y2="480" stroke="var(--line-soft)" stroke-width="1"/>
+          <text x="64" y="484" text-anchor="end" font-family="Noto Sans KR, sans-serif" font-size="11" fill="var(--ink-3)">0.0M</text>
+          <line x1="70" y1="406.4" x2="400" y2="406.4" stroke="var(--line-soft)" stroke-width="1"/>
+          <text x="64" y="410.4" text-anchor="end" font-family="Noto Sans KR, sans-serif" font-size="11" fill="var(--ink-3)">14.5M</text>
+          <line x1="70" y1="332.8" x2="400" y2="332.8" stroke="var(--line-soft)" stroke-width="1"/>
+          <text x="64" y="336.8" text-anchor="end" font-family="Noto Sans KR, sans-serif" font-size="11" fill="var(--ink-3)">29.0M</text>
+          <line x1="70" y1="480" x2="400" y2="480" stroke="currentColor" stroke-width="1"/>
+          <text x="70" y="498" font-family="Noto Sans KR, sans-serif" font-size="11" fill="var(--ink-3)">04-13</text>
+          <text x="235" y="498" text-anchor="middle" font-family="Noto Sans KR, sans-serif" font-size="11" fill="var(--ink-3)">04-17</text>
+          <text x="400" y="498" text-anchor="end" font-family="Noto Sans KR, sans-serif" font-size="11" fill="var(--ink-3)">04-20</text>
+          <line x1="70" y1="339.9" x2="400" y2="339.9" stroke="var(--red)" stroke-width="1.2" stroke-dasharray="5 3"/>
+          <text x="400" y="353.9" text-anchor="end" font-family="Noto Sans KR, sans-serif" font-size="11" font-weight="700" fill="var(--red)">평균 27.6M</text>
+          <path d="M 70 480 H 72.5 V 479.9 H 73.5 V 478.8 H 74.5 V 476.1 H 75.5 V 474.7 H 76.5 V 473.7 H 77.4 V 473.7 H 78.4 V 473.7 H 79.5 V 470.5 H 80.5 V 469.7 H 81.5 V 469.2 H 82.5 V 468.3 H 83.5 V 468 H 84.4 V 467.7 H 85.5 V 467.4 H 86.5 V 467.3 H 87.4 V 467.3 H 88.3 V 467.3 H 89.3 V 467.2 H 90.4 V 467.2 H 91.3 V 467.2 H 92.4 V 467.2 H 93.4 V 467.2 H 94.4 V 467.2 H 95.3 V 467.1 H 96.5 V 467.1 H 97.5 V 467 H 98.3 V 466.8 H 99.5 V 466.8 H 100.3 V 466.8 H 101.4 V 466.8 H 102 V 466.8 H 103.4 V 466.8 H 104.4 V 466.8 H 105.3 V 466.7 H 106.2 V 466.7 H 107.4 V 466.4 H 108.3 V 466.4 H 109.4 V 466.3 H 110.3 V 466.3 H 111.5 V 466.3 H 112.2 V 466.3 H 113.2 V 466.3 H 114.5 V 466.3 H 115.2 V 466.3 H 116.4 V 466.3 H 117 V 466.3 H 118.3 V 466.3 H 119.4 V 466.3 H 120.4 V 466.3 H 121.3 V 466.2 H 122.2 V 466.2 H 123.3 V 466.2 H 124.2 V 466.2 H 125.3 V 466.2 H 126.4 V 465.9 H 127.3 V 465.9 H 128.2 V 465.9 H 129.3 V 465.3 H 130.1 V 465.2 H 131.5 V 465.2 H 132.4 V 465.2 H 133 V 465.1 H 134.2 V 465.1 H 135.2 V 465 H 136.4 V 465 H 137.3 V 465 H 138.4 V 464.8 H 139 V 464.8 H 140.4 V 464.8 H 141 V 464.4 H 142.3 V 464.4 H 143.5 V 464 H 143.7 V 464 H 145.4 V 464 H 145.7 V 464 H 147.3 V 464 H 147.9 V 464 H 150.2 V 464 H 151.5 V 464 H 152.2 V 464 H 153.5 V 464 H 154.5 V 463.4 H 155.4 V 463.4 H 156.4 V 463.2 H 157.5 V 463 H 158.5 V 462.6 H 159.5 V 461.3 H 160.5 V 460.5 H 161.4 V 460.1 H 162.5 V 455.9 H 163.5 V 448.1 H 164.5 V 405.2 H 165.5 V 394.1 H 166.5 V 388.3 H 167.5 V 381.5 H 168.5 V 365.6 H 169.5 V 361.5 H 170.5 V 358.8 H 171.5 V 357.6 H 172.4 V 353.2 H 173.5 V 353.2 H 174.5 V 352.6 H 175.4 V 351.1 H 176.4 V 350.9 H 177.4 V 350.9 H 178.5 V 350.9 H 179.3 V 350.9 H 180.1 V 350.9 H 181.5 V 350.9 H 182.3 V 350.9 H 183.5 V 350.9 H 183.9 V 350.9 H 185.5 V 350.5 H 186.2 V 349.1 H 187.4 V 349.1 H 188.4 V 349.1 H 189 V 349.1 H 190.1 V 349.1 H 191.4 V 349.1 H 192.2 V 349.1 H 193.3 V 349.1 H 194.4 V 349.1 H 194.6 V 349.1 H 195.9 V 349.1 H 197.2 V 349.1 H 198.2 V 349.1 H 199.3 V 349.1 H 200.2 V 349.1 H 201.4 V 349.1 H 202 V 349.1 H 203.5 V 349.1 H 204.3 V 349.1 H 205.4 V 349.1 H 206.4 V 349.1 H 207 V 349.1 H 207.9 V 349.1 H 209.4 V 349.1 H 210.2 V 349.1 H 211.4 V 349.1 H 212.4 V 349.1 H 213.4 V 349.1 H 214.5 V 349.1 H 215 V 349.1 H 216.1 V 349.1 H 217.4 V 344.9 H 217.7 V 344.9 H 218.6 V 344.7 H 220.3 V 344.5 H 220.7 V 344.5 H 222.1 V 344.5 H 223.5 V 344.2 H 224.5 V 341.9 H 225.4 V 341.9 H 225.8 V 341.9 H 227.4 V 341.9 H 227.8 V 341.9 H 229.5 V 341.9 H 229.6 V 341.9 H 231.3 V 341.9 H 232.4 V 341.9 H 234.5 V 341.9 H 235.5 V 341.9 H 236.4 V 341.9 H 237.2 V 341.9 H 238.3 V 341.9 H 239.3 V 341.9 H 240.1 V 341.9 H 242.5 V 341.9 H 242.8 V 341.9 H 245.3 V 341.9 H 245.9 V 341.9 H 247.1 V 341.9 H 248.5 V 341.9 H 249.5 V 341.9 H 249.9 V 341.9 H 251.4 V 341.9 H 252.3 V 341.9 H 253.5 V 341.9 H 253.9 V 341.9 H 255.2 V 341.9 H 257.2 V 341.9 H 258.1 V 341.9 H 258.9 V 341.9 H 260.8 V 341.9 H 262.3 V 341.9 H 264.2 V 341.9 H 265 V 341.9 H 267.4 V 341.9 H 267.7 V 341.9 H 269 V 341.9 H 270 V 341.9 H 271.1 V 341.9 H 272.2 V 341.9 H 272.7 V 341.9 H 274.4 V 341.9 H 275.4 V 341.7 H 276.3 V 341.7 H 276.8 V 341.7 H 278 V 341.7 H 279.4 V 341.7 H 280.4 V 341.7 H 282 V 341.7 H 283.6 V 341.7 H 285.5 V 341.7 H 287.3 V 341.7 H 289 V 341.7 H 290.1 V 341.7 H 291.5 V 341.7 H 292.2 V 341.7 H 293.5 V 341.7 H 295.3 V 341.7 H 296 V 341.7 H 297.3 V 341.7 H 298.4 V 341.7 H 299.1 V 341.7 H 301.4 V 341.7 H 302.1 V 341.7 H 302.9 V 341.7 H 303.8 V 341.7 H 305.1 V 341.7 H 307.2 V 341.7 H 308.3 V 341.7 H 308.8 V 341.7 H 309.5 V 341.7 H 311.1 V 341.7 H 313 V 341.7 H 314.2 V 341.7 H 315.4 V 341.7 H 319.6 V 341.7 H 320.6 V 341.7 H 322.9 V 341.7 H 324.8 V 341.7 H 327 V 341.7 H 331.3 V 341.7 H 332.3 V 341.7 H 333.3 V 341.7 H 337.1 V 341.7 H 338.5 V 341.7 H 338.5 V 341.7 H 340.3 V 341.7 H 341 V 341.7 H 342.3 V 341.7 H 342.8 V 341.7 H 345.3 V 341.7 H 346.2 V 341.7 H 347.4 V 341.7 H 349.3 V 341.7 H 350.4 V 341.7 H 350.8 V 341.7 H 351.8 V 341.7 H 353.5 V 341.7 H 354.2 V 341.7 H 355.5 V 341.7 H 356.5 V 341.7 H 357.5 V 341.7 H 358.4 V 341.7 H 359.5 V 341.7 H 360.4 V 341.7 H 360.9 V 341.7 H 362.5 V 341.7 H 363 V 341.7 H 363.6 V 341.7 H 366 V 341.7 H 367.4 V 341.7 H 368.3 V 341.7 H 369.5 V 341.7 H 370.4 V 341.7 H 371.5 V 341.5 H 372.2 V 341.5 H 373.4 V 341.1 H 373.5 V 341 H 374.7 V 341 H 376.3 V 337.2 H 377.4 V 337.2 H 378.2 V 337.2 H 379.2 V 337.2 H 380 V 337.2 H 381.4 V 337.2 H 382.5 V 337.2 H 383.2 V 337.2 H 384.4 V 337.2 H 385.4 V 336.5 H 386.1 V 336.5 H 387.3 V 335 H 388.5 V 335 H 389.3 V 334.3 H 390.3 V 334.3 H 391.5 V 334.3 H 392.5 V 333.2 H 392.9 V 333.2 H 394.1 V 333.2 H 395.2 V 333.2 H 396.3 V 333.2 H 397.4 V 333.2 H 397.8 V 333.2 H 399.5 V 332.8 H 400 V 332.8 H 400" fill="none" stroke="var(--navy)" stroke-width="2" stroke-linejoin="round"/>
+          <text x="400" y="325.8" text-anchor="end" font-family="Noto Sans KR, sans-serif" font-size="11.5" font-weight="700" fill="var(--navy)">29.0M</text>
+          <text x="434" y="302" font-family="Noto Sans KR, sans-serif" font-size="13" font-weight="700" fill="var(--ink)">FOLD 1차 — FDV (USDC 환산)</text>
+          <line x1="488" y1="402" x2="818" y2="402" stroke="var(--line-soft)" stroke-width="1"/>
+          <text x="482" y="406" text-anchor="end" font-family="Noto Sans KR, sans-serif" font-size="11" fill="var(--ink-3)">25.5M</text>
+          <line x1="488" y1="480" x2="818" y2="480" stroke="currentColor" stroke-width="1"/>
+          <text x="488" y="498" font-family="Noto Sans KR, sans-serif" font-size="11" fill="var(--ink-3)">07-06</text>
+          <text x="653" y="498" text-anchor="middle" font-family="Noto Sans KR, sans-serif" font-size="11" fill="var(--ink-3)">07-08</text>
+          <text x="818" y="498" text-anchor="end" font-family="Noto Sans KR, sans-serif" font-size="11" fill="var(--ink-3)">07-10</text>
+          <path d="M 488 402 H 497.5 V 402 H 498.1 V 402 H 501.2 V 402 H 505.8 V 402 H 514.2 V 402 H 514.7 V 402 H 516.5 V 402 H 518.9 V 402 H 521.1 V 402 H 524.6 V 402 H 526.9 V 402 H 531.9 V 402 H 533.6 V 402 H 535.1 V 402 H 537.5 V 402 H 538.8 V 402 H 545.3 V 402 H 547.4 V 402 H 549.8 V 402 H 552.4 V 402 H 553.4 V 402 H 558.9 V 402 H 567 V 402 H 570.3 V 402 H 571.5 V 402 H 574.9 V 402 H 577.3 V 402 H 578.3 V 402 H 579.3 V 402 H 583.1 V 402 H 583.6 V 402 H 586.9 V 402 H 589.7 V 402 H 590.9 V 402 H 596.3 V 402 H 597.4 V 402 H 606.4 V 402 H 607.5 V 402 H 611.7 V 402 H 614.9 V 402 H 616.2 V 402 H 617.6 V 402 H 618.8 V 402 H 621.4 V 402 H 623.2 V 402 H 623.7 V 402 H 626.5 V 402 H 628.5 V 402 H 630.1 V 402 H 631.4 V 402 H 631.7 V 402 H 632.7 V 402 H 634.4 V 402 H 637.5 V 402 H 637.8 V 402 H 639.3 V 402 H 641.2 V 402 H 644.3 V 402 H 645.5 V 402 H 646.3 V 402 H 646.9 V 402 H 648.1 V 402 H 650.3 V 402 H 651.3 V 402 H 651.7 V 402 H 653.3 V 402 H 654.4 V 402 H 655.5 V 402 H 656.5 V 402 H 657.2 V 402 H 657.7 V 402 H 659.5 V 402 H 660.2 V 402 H 662.3 V 402 H 665.4 V 402 H 665.6 V 402 H 667.7 V 402 H 670.2 V 402 H 670.6 V 402 H 671.8 V 402 H 679.4 V 402 H 680.3 V 402 H 686.9 V 402 H 691.9 V 402 H 696.7 V 402 H 698.5 V 402 H 702.3 V 402 H 704.1 V 402 H 705.9 V 402 H 707.1 V 402 H 707.6 V 402 H 716.3 V 402 H 717.5 V 402 H 719.9 V 402 H 723.3 V 402 H 733.8 V 402 H 736 V 402 H 736.8 V 402 H 737.9 V 402 H 738.5 V 402 H 741.8 V 402 H 742.9 V 402 H 743.6 V 402 H 745.2 V 402 H 748.4 V 402 H 751.1 V 402 H 754.3 V 402 H 755.3 V 402 H 757.4 V 402 H 758 V 402 H 760.7 V 402 H 762.7 V 402 H 764 V 402 H 765.4 V 402 H 767.3 V 402 H 771.4 V 402 H 773.1 V 402 H 774.7 V 402 H 776.3 V 402 H 780.9 V 402 H 782.2 V 402 H 785.6 V 402 H 786.7 V 402 H 788.3 V 402 H 793 V 402 H 794 V 402 H 796.3 V 402 H 797.2 V 402 H 797.8 V 402 H 799.1 V 402 H 800.3 V 402 H 801.3 V 402 H 801.7 V 402 H 803.4 V 402 H 804.5 V 402 H 806.5 V 402 H 807.4 V 402 H 808.2 V 402 H 809.4 V 402 H 810.4 V 402 H 811.2 V 402 H 812.3 V 402 H 813.1 V 402 H 814.4 V 402 H 815.3 V 402 H 816.3 V 402 H 817.3 V 402 H 818 V 402 H 818" fill="none" stroke="var(--navy)" stroke-width="2" stroke-linejoin="round"/>
+          <text x="818" y="395" text-anchor="end" font-family="Noto Sans KR, sans-serif" font-size="11.5" font-weight="700" fill="var(--navy)">25.5M</text>
+          <text x="16" y="564" font-family="Noto Sans KR, sans-serif" font-size="13" font-weight="700" fill="var(--ink)">FOLD 2차 — FDV (USDC)</text>
+          <line x1="70" y1="733.6" x2="400" y2="733.6" stroke="var(--line-soft)" stroke-width="1"/>
+          <text x="64" y="737.6" text-anchor="end" font-family="Noto Sans KR, sans-serif" font-size="11" fill="var(--ink-3)">25.86M</text>
+          <line x1="70" y1="664" x2="400" y2="664" stroke="var(--line-soft)" stroke-width="1"/>
+          <text x="64" y="668" text-anchor="end" font-family="Noto Sans KR, sans-serif" font-size="11" fill="var(--ink-3)">26.37M</text>
+          <line x1="70" y1="594.4" x2="400" y2="594.4" stroke="var(--line-soft)" stroke-width="1"/>
+          <text x="64" y="598.4" text-anchor="end" font-family="Noto Sans KR, sans-serif" font-size="11" fill="var(--ink-3)">26.89M</text>
+          <line x1="70" y1="742" x2="400" y2="742" stroke="currentColor" stroke-width="1"/>
+          <text x="70" y="760" font-family="Noto Sans KR, sans-serif" font-size="11" fill="var(--ink-3)">08-17</text>
+          <text x="235" y="760" text-anchor="middle" font-family="Noto Sans KR, sans-serif" font-size="11" fill="var(--ink-3)">08-18</text>
+          <text x="400" y="760" text-anchor="end" font-family="Noto Sans KR, sans-serif" font-size="11" fill="var(--ink-3)">08-19</text>
+          <line x1="70" y1="630.8" x2="400" y2="630.8" stroke="var(--red)" stroke-width="1.2" stroke-dasharray="5 3"/>
+          <text x="400" y="644.8" text-anchor="end" font-family="Noto Sans KR, sans-serif" font-size="11" font-weight="700" fill="var(--red)">평균 26.62M</text>
+          <path d="M 70.4 733.7 H 71.5 V 733.7 H 71.5 V 733.7 H 72.8 V 733.7 H 74.9 V 733.7 H 78.3 V 733.7 H 80.1 V 733.7 H 81.4 V 733.7 H 88.9 V 733.7 H 90 V 733.7 H 91.2 V 733.7 H 92.5 V 733.7 H 95.7 V 733.7 H 100.3 V 733.7 H 100.6 V 733.7 H 104 V 733.7 H 109.3 V 733.7 H 114.3 V 733.7 H 117 V 733.7 H 118 V 733.7 H 121.4 V 733.7 H 124.8 V 733.7 H 126.1 V 733.7 H 128.2 V 733.7 H 135.6 V 733.7 H 138 V 733.7 H 140.9 V 733.7 H 142.8 V 733.7 H 146.4 V 733.7 H 147.1 V 733.7 H 149.3 V 733.7 H 176 V 733.7 H 177.5 V 733.7 H 180.9 V 733.7 H 186.9 V 733.7 H 190.2 V 733.7 H 192.3 V 733.7 H 194.8 V 733.7 H 196.4 V 733.7 H 196.9 V 733.7 H 198.5 V 733.7 H 200.4 V 733.7 H 207 V 733.7 H 208 V 733.7 H 211.1 V 733.7 H 212.4 V 733.7 H 218.4 V 733.7 H 219.1 V 733.7 H 225 V 733.7 H 225.6 V 733.7 H 227.1 V 733.7 H 233.1 V 733.7 H 238.7 V 733.7 H 245.3 V 733.7 H 248.2 V 733.7 H 248.7 V 733.7 H 254.4 V 733.7 H 255.7 V 733.7 H 257.3 V 733.7 H 258.1 V 733.7 H 261.1 V 733.7 H 264 V 733.7 H 271.1 V 733.7 H 275.6 V 733.7 H 278.3 V 733.7 H 278.6 V 733.7 H 288.1 V 733.7 H 293.6 V 733.7 H 296.4 V 733.7 H 297.2 V 733.7 H 298 V 733.7 H 302.1 V 733.7 H 302.8 V 733.7 H 305.5 V 733.7 H 306 V 733.7 H 311 V 733.7 H 314.5 V 733.7 H 320.7 V 733.7 H 328.4 V 733.7 H 328.6 V 733.7 H 335.7 V 733.7 H 340.9 V 733.7 H 344.5 V 733.7 H 350.6 V 733.7 H 354.2 V 733.7 H 355.9 V 733.7 H 359.9 V 733.7 H 361.5 V 733.7 H 363.2 V 733.7 H 364.2 V 733.7 H 364.8 V 733.7 H 368.2 V 733.7 H 369.2 V 733.7 H 372.1 V 733.7 H 373.1 V 733.7 H 376.2 V 733.7 H 378.4 V 733.7 H 380 V 733.7 H 382.8 V 733.7 H 384.2 V 733.7 H 385.8 V 733.7 H 387.5 V 733.7 H 389.3 V 733.7 H 390.2 V 733.7 H 391.1 V 733.7 H 393.1 V 733.7 H 394.4 V 675.2 H 395.4 V 664 H 396.4 V 629.3 H 397.5 V 629.3 H 398.4 V 629.3 H 399.4 V 629.3 H 400 V 594.4 H 400" fill="none" stroke="var(--navy)" stroke-width="2" stroke-linejoin="round"/>
+          <text x="400" y="587.4" text-anchor="end" font-family="Noto Sans KR, sans-serif" font-size="11.5" font-weight="700" fill="var(--navy)">26.89M</text>
+        </svg>
+      </div>
+    </figure>
+  </section>
+
+  <section>
+    <p class="sec">커밋 vs 실제 모금</p>
+    <figure>
+      <div class="fig-scroll">
+        <svg viewBox="0 0 850 330" role="img" aria-label="세일별 총 커밋 대비 실제 모금 비율: AZTEC 65.4%, CAP 24.2%, OCTRA 29.7%, FOLD 1차 100%, FOLD 2차 63.5%">
+          <text x="834" y="16" text-anchor="end" font-family="Noto Sans KR, sans-serif" font-size="11.5" fill="var(--ink-3)">막대 전체 = 총 커밋 · 채움 = 실제 모금</text>
+          <text x="16" y="54" font-family="Noto Sans KR, sans-serif" font-size="13" font-weight="700" fill="var(--ink)">AZTEC</text>
+          <rect x="110" y="40" width="580" height="18" rx="2" fill="var(--line-soft)" stroke="var(--line)" stroke-width="1"/>
+          <rect x="110" y="40" width="379" height="18" rx="2" fill="var(--navy)"/>
+          <text x="700" y="54" font-family="Noto Sans KR, sans-serif" font-size="13" font-weight="700" fill="var(--navy)">65.4%</text>
+          <text x="110" y="76" font-family="Noto Sans KR, sans-serif" font-size="11.5" fill="var(--ink-3)">커밋 29,630.8 ETH → 모금 19,388.5 ETH</text>
+          <text x="16" y="114" font-family="Noto Sans KR, sans-serif" font-size="13" font-weight="700" fill="var(--ink)">CAP</text>
+          <rect x="110" y="100" width="580" height="18" rx="2" fill="var(--line-soft)" stroke="var(--line)" stroke-width="1"/>
+          <rect x="110" y="100" width="140" height="18" rx="2" fill="var(--navy)"/>
+          <text x="700" y="114" font-family="Noto Sans KR, sans-serif" font-size="13" font-weight="700" fill="var(--navy)">24.2%</text>
+          <text x="110" y="136" font-family="Noto Sans KR, sans-serif" font-size="11.5" fill="var(--ink-3)">커밋 15,895,410 USDC → 모금 3,842,507 USDC</text>
+          <text x="16" y="174" font-family="Noto Sans KR, sans-serif" font-size="13" font-weight="700" fill="var(--ink)">OCTRA</text>
+          <rect x="110" y="160" width="580" height="18" rx="2" fill="var(--line-soft)" stroke="var(--line)" stroke-width="1"/>
+          <rect x="110" y="160" width="172" height="18" rx="2" fill="var(--navy)"/>
+          <text x="700" y="174" font-family="Noto Sans KR, sans-serif" font-size="13" font-weight="700" fill="var(--navy)">29.7%</text>
+          <text x="110" y="196" font-family="Noto Sans KR, sans-serif" font-size="11.5" fill="var(--ink-3)">커밋 3,969.8 ETH → 모금 1,177.3 ETH</text>
+          <text x="16" y="234" font-family="Noto Sans KR, sans-serif" font-size="13" font-weight="700" fill="var(--ink)">FOLD 1차</text>
+          <rect x="110" y="220" width="580" height="18" rx="2" fill="var(--line-soft)" stroke="var(--line)" stroke-width="1"/>
+          <rect x="110" y="220" width="580" height="18" rx="2" fill="var(--navy)"/>
+          <text x="700" y="234" font-family="Noto Sans KR, sans-serif" font-size="13" font-weight="700" fill="var(--navy)">100%</text>
+          <text x="110" y="256" font-family="Noto Sans KR, sans-serif" font-size="11.5" fill="var(--ink-3)">커밋 523.9 ETH → 모금 523.9 ETH</text>
+          <text x="16" y="294" font-family="Noto Sans KR, sans-serif" font-size="13" font-weight="700" fill="var(--ink)">FOLD 2차</text>
+          <rect x="110" y="280" width="580" height="18" rx="2" fill="var(--line-soft)" stroke="var(--line)" stroke-width="1"/>
+          <rect x="110" y="280" width="368" height="18" rx="2" fill="var(--navy)"/>
+          <text x="700" y="294" font-family="Noto Sans KR, sans-serif" font-size="13" font-weight="700" fill="var(--navy)">63.5%</text>
+          <text x="110" y="316" font-family="Noto Sans KR, sans-serif" font-size="11.5" fill="var(--ink-3)">커밋 838,973 USDC → 모금 532,425 USDC</text>
+        </svg>
+      </div>
+    </figure>
+  </section>
+
+  <section>
+    <p class="sec">판매율</p>
+    <figure>
+      <div class="fig-scroll">
+        <svg viewBox="0 0 850 330" role="img" aria-label="세일별 경매 물량 대비 판매율: AZTEC 96.5%, CAP 100%, OCTRA 100%, FOLD 1차 36.4%, FOLD 2차 100%">
+          <text x="834" y="16" text-anchor="end" font-family="Noto Sans KR, sans-serif" font-size="11.5" fill="var(--ink-3)">막대 전체 = 경매 물량 · 채움 = 판매량</text>
+          <text x="16" y="54" font-family="Noto Sans KR, sans-serif" font-size="13" font-weight="700" fill="var(--ink)">AZTEC</text>
+          <rect x="110" y="40" width="580" height="18" rx="2" fill="var(--line-soft)" stroke="var(--line)" stroke-width="1"/>
+          <rect x="110" y="40" width="560" height="18" rx="2" fill="var(--navy)"/>
+          <text x="700" y="54" font-family="Noto Sans KR, sans-serif" font-size="13" font-weight="700" fill="var(--navy)">96.5%</text>
+          <text x="110" y="76" font-family="Noto Sans KR, sans-serif" font-size="11.5" fill="var(--ink-3)">1,492.7M / 1,547.0M AZTEC</text>
+          <text x="16" y="114" font-family="Noto Sans KR, sans-serif" font-size="13" font-weight="700" fill="var(--ink)">CAP</text>
+          <rect x="110" y="100" width="580" height="18" rx="2" fill="var(--line-soft)" stroke="var(--line)" stroke-width="1"/>
+          <rect x="110" y="100" width="580" height="18" rx="2" fill="var(--navy)"/>
+          <text x="700" y="114" font-family="Noto Sans KR, sans-serif" font-size="13" font-weight="700" fill="var(--navy)">100%</text>
+          <text x="110" y="136" font-family="Noto Sans KR, sans-serif" font-size="11.5" fill="var(--ink-3)">400.0M / 400.0M rCAP</text>
+          <text x="16" y="174" font-family="Noto Sans KR, sans-serif" font-size="13" font-weight="700" fill="var(--ink)">OCTRA</text>
+          <rect x="110" y="160" width="580" height="18" rx="2" fill="var(--line-soft)" stroke="var(--line)" stroke-width="1"/>
+          <rect x="110" y="160" width="580" height="18" rx="2" fill="var(--navy)"/>
+          <text x="700" y="174" font-family="Noto Sans KR, sans-serif" font-size="13" font-weight="700" fill="var(--navy)">100%</text>
+          <text x="110" y="196" font-family="Noto Sans KR, sans-serif" font-size="11.5" fill="var(--ink-3)">100.0M / 100.0M wOCT</text>
+          <text x="16" y="234" font-family="Noto Sans KR, sans-serif" font-size="13" font-weight="700" fill="var(--ink)">FOLD 1차</text>
+          <rect x="110" y="220" width="580" height="18" rx="2" fill="var(--line-soft)" stroke="var(--line)" stroke-width="1"/>
+          <rect x="110" y="220" width="211" height="18" rx="2" fill="var(--navy)"/>
+          <text x="700" y="234" font-family="Noto Sans KR, sans-serif" font-size="13" font-weight="700" fill="var(--navy)">36.4%</text>
+          <text x="110" y="256" font-family="Noto Sans KR, sans-serif" font-size="11.5" fill="var(--ink-3)">43.7M / 120.0M FOLD</text>
+          <text x="16" y="294" font-family="Noto Sans KR, sans-serif" font-size="13" font-weight="700" fill="var(--ink)">FOLD 2차</text>
+          <rect x="110" y="280" width="580" height="18" rx="2" fill="var(--line-soft)" stroke="var(--line)" stroke-width="1"/>
+          <rect x="110" y="280" width="580" height="18" rx="2" fill="var(--navy)"/>
+          <text x="700" y="294" font-family="Noto Sans KR, sans-serif" font-size="13" font-weight="700" fill="var(--navy)">100%</text>
+          <text x="110" y="316" font-family="Noto Sans KR, sans-serif" font-size="11.5" fill="var(--ink-3)">24.0M / 24.0M FOLD</text>
+        </svg>
+      </div>
+    </figure>
+  </section>
+
+  <section>
+    <p class="sec">경매 기간 타임라인</p>
+    <figure>
+      <div class="fig-scroll">
+        <svg viewBox="0 0 850 325" role="img" aria-label="세일별 경매 기간(막대 길이 = 일수 비례)과 마지막 블록 물량 비중: AZTEC 23일 40.2%, CAP 9일 25.1%, OCTRA 7일 30.0%, FOLD 1차 4일 30.0%, FOLD 2차 2일 30.0%">
+          <text x="16" y="53" font-family="Noto Sans KR, sans-serif" font-size="13" font-weight="700" fill="var(--ink)">AZTEC</text>
+          <rect x="110" y="40" width="560" height="16" fill="var(--cell)" stroke="var(--cell-edge)" stroke-width="1"/>
+          <rect x="667" y="40" width="3" height="16" fill="var(--red)"/>
+          <text x="116" y="52.5" font-family="Noto Sans KR, sans-serif" font-size="11" fill="var(--ink-2)">23일</text>
+          <text x="680" y="52.5" font-family="Noto Sans KR, sans-serif" font-size="11.5" font-weight="700" fill="var(--red)">마지막 1블록 40.2%</text>
+          <text x="110" y="74" font-family="Noto Sans KR, sans-serif" font-size="11.5" fill="var(--ink-3)">2025-11-13 → 12-07</text>
+          <text x="16" y="113" font-family="Noto Sans KR, sans-serif" font-size="13" font-weight="700" fill="var(--ink)">CAP</text>
+          <rect x="110" y="100" width="219" height="16" fill="var(--cell)" stroke="var(--cell-edge)" stroke-width="1"/>
+          <rect x="326" y="100" width="3" height="16" fill="var(--red)"/>
+          <text x="116" y="112.5" font-family="Noto Sans KR, sans-serif" font-size="11" fill="var(--ink-2)">9일</text>
+          <text x="339" y="112.5" font-family="Noto Sans KR, sans-serif" font-size="11.5" font-weight="700" fill="var(--red)">마지막 1블록 25.1%</text>
+          <text x="110" y="134" font-family="Noto Sans KR, sans-serif" font-size="11.5" fill="var(--ink-3)">2026-06-09 → 06-18</text>
+          <text x="16" y="173" font-family="Noto Sans KR, sans-serif" font-size="13" font-weight="700" fill="var(--ink)">OCTRA</text>
+          <rect x="110" y="160" width="170" height="16" fill="var(--cell)" stroke="var(--cell-edge)" stroke-width="1"/>
+          <rect x="277" y="160" width="3" height="16" fill="var(--red)"/>
+          <text x="116" y="172.5" font-family="Noto Sans KR, sans-serif" font-size="11" fill="var(--ink-2)">7일</text>
+          <text x="290" y="172.5" font-family="Noto Sans KR, sans-serif" font-size="11.5" font-weight="700" fill="var(--red)">마지막 1블록 30.0%</text>
+          <text x="110" y="194" font-family="Noto Sans KR, sans-serif" font-size="11.5" fill="var(--ink-3)">2026-04-13 → 04-20</text>
+          <text x="16" y="233" font-family="Noto Sans KR, sans-serif" font-size="13" font-weight="700" fill="var(--ink)">FOLD 1차</text>
+          <rect x="110" y="220" width="97" height="16" fill="var(--cell)" stroke="var(--cell-edge)" stroke-width="1"/>
+          <rect x="204" y="220" width="3" height="16" fill="var(--red)"/>
+          <text x="116" y="232.5" font-family="Noto Sans KR, sans-serif" font-size="11" fill="var(--ink-2)">4일</text>
+          <text x="217" y="232.5" font-family="Noto Sans KR, sans-serif" font-size="11.5" font-weight="700" fill="var(--red)">마지막 1블록 30.0%</text>
+          <text x="110" y="254" font-family="Noto Sans KR, sans-serif" font-size="11.5" fill="var(--ink-3)">2026-07-06 → 07-10</text>
+          <text x="16" y="293" font-family="Noto Sans KR, sans-serif" font-size="13" font-weight="700" fill="var(--ink)">FOLD 2차</text>
+          <rect x="110" y="280" width="47" height="16" fill="var(--cell)" stroke="var(--cell-edge)" stroke-width="1"/>
+          <rect x="154" y="280" width="3" height="16" fill="var(--red)"/>
+          <text x="116" y="292.5" font-family="Noto Sans KR, sans-serif" font-size="11" fill="var(--ink-2)">2일</text>
+          <text x="167" y="292.5" font-family="Noto Sans KR, sans-serif" font-size="11.5" font-weight="700" fill="var(--red)">마지막 1블록 30.0%</text>
+          <text x="110" y="314" font-family="Noto Sans KR, sans-serif" font-size="11.5" fill="var(--ink-3)">2026-08-17 → 08-19</text>
+        </svg>
+      </div>
+    </figure>
+  </section>
+
+  </div>
+</main>
+
+<script>
+  document.querySelectorAll('.tab').forEach(function (tab) {
+    tab.addEventListener('click', function () {
+      document.querySelectorAll('.tab').forEach(function (t) { t.classList.remove('active'); });
+      document.querySelectorAll('.cat-page').forEach(function (p) { p.classList.remove('active'); });
+      tab.classList.add('active');
+      var page = document.getElementById(tab.dataset.cat);
+      if (page) page.classList.add('active');
+    });
+  });
+</script>
