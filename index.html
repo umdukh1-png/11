@@ -465,35 +465,56 @@
     <p class="sec">3단계 — 블록 내 주문 체결·가격 발견</p>
     <figure>
       <div class="fig-scroll">
-        <svg viewBox="0 0 850 340" role="img" aria-label="블록 1을 확대해 들어가면, 가격 결정 패널에서 후보가격별 체결량 비교로 블록 체결가 $10이 정해지고, 화살표를 거쳐 분배 패널에서 A 10개·B 0개·C 0개로 할당되는 과정">
+        <svg viewBox="0 0 850 340" role="img" aria-label="블록 1(코인 10개 할당)에 A·B·C가 $100씩 넣고, 가격 결정 패널에서 체결가 $10이 정해진 뒤 분배 패널에서 A 10개·B 0개·C 0개로 할당되는 과정">
           <defs>
             <marker id="arrN3" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
               <path d="M 0 1 L 9 5 L 0 9 z" fill="var(--navy)"/>
             </marker>
           </defs>
 
-          <!-- 블록 1 유입 $100 × 3 (참여자별) -->
-          <rect x="16" y="49" width="72" height="52" rx="3" fill="var(--paper)" stroke="var(--cell-edge)" stroke-width="1.2"/>
-          <text x="52" y="71" text-anchor="middle" font-family="Noto Sans KR, sans-serif" font-size="13" font-weight="700" fill="var(--ink)">블록 1</text>
-          <text x="52" y="89" text-anchor="middle" font-family="Noto Sans KR, sans-serif" font-size="11" fill="var(--ink-2)">$100</text>
-          <line x1="92" y1="75" x2="118" y2="75" stroke="var(--navy)" stroke-width="1.5" marker-end="url(#arrN3)"/>
+          <!-- 블록 1 (좌측 대형 블록) -->
+          <rect x="16" y="46" width="88" height="210" rx="3" fill="var(--paper)" stroke="var(--cell-edge)" stroke-width="1.2"/>
+          <g fill="var(--cell)" stroke="var(--cell-edge)" stroke-width="0.8">
+            <rect x="43" y="58" width="14" height="14" rx="2"/>
+            <rect x="60" y="58" width="14" height="14" rx="2"/>
+            <rect x="43" y="75" width="14" height="14" rx="2"/>
+            <rect x="60" y="75" width="14" height="14" rx="2"/>
+            <rect x="43" y="92" width="14" height="14" rx="2"/>
+            <rect x="60" y="92" width="14" height="14" rx="2"/>
+            <rect x="43" y="109" width="14" height="14" rx="2"/>
+            <rect x="60" y="109" width="14" height="14" rx="2"/>
+            <rect x="43" y="126" width="14" height="14" rx="2"/>
+            <rect x="60" y="126" width="14" height="14" rx="2"/>
+          </g>
+          <text x="60" y="176" text-anchor="middle" font-family="Noto Sans KR, sans-serif" font-size="13" font-weight="700" fill="var(--ink)">블록 1</text>
+          <text x="60" y="194" text-anchor="middle" font-family="Noto Sans KR, sans-serif" font-size="10.5" fill="var(--ink-2)">코인 10개 할당</text>
 
-          <rect x="16" y="125" width="72" height="52" rx="3" fill="var(--paper)" stroke="var(--cell-edge)" stroke-width="1.2"/>
-          <text x="52" y="147" text-anchor="middle" font-family="Noto Sans KR, sans-serif" font-size="13" font-weight="700" fill="var(--ink)">블록 1</text>
-          <text x="52" y="165" text-anchor="middle" font-family="Noto Sans KR, sans-serif" font-size="11" fill="var(--ink-2)">$100</text>
-          <line x1="92" y1="151" x2="118" y2="151" stroke="var(--navy)" stroke-width="1.5" marker-end="url(#arrN3)"/>
-
-          <rect x="16" y="201" width="72" height="52" rx="3" fill="var(--paper)" stroke="var(--cell-edge)" stroke-width="1.2"/>
-          <text x="52" y="223" text-anchor="middle" font-family="Noto Sans KR, sans-serif" font-size="13" font-weight="700" fill="var(--ink)">블록 1</text>
-          <text x="52" y="241" text-anchor="middle" font-family="Noto Sans KR, sans-serif" font-size="11" fill="var(--ink-2)">$100</text>
-          <line x1="92" y1="227" x2="118" y2="227" stroke="var(--navy)" stroke-width="1.5" marker-end="url(#arrN3)"/>
+          <!-- 유입 $100 칩 3개 -->
+          <g stroke="currentColor" stroke-width="1">
+            <line x1="104" y1="75" x2="112" y2="75"/>
+            <line x1="104" y1="151" x2="112" y2="151"/>
+            <line x1="104" y1="227" x2="112" y2="227"/>
+          </g>
+          <g>
+            <rect x="112" y="55" width="52" height="40" rx="3" fill="var(--paper)" stroke="var(--cell-edge)" stroke-width="1.2"/>
+            <text x="138" y="80" text-anchor="middle" font-family="Noto Sans KR, sans-serif" font-size="12.5" font-weight="700" fill="var(--navy)">$100</text>
+            <rect x="112" y="131" width="52" height="40" rx="3" fill="var(--paper)" stroke="var(--cell-edge)" stroke-width="1.2"/>
+            <text x="138" y="156" text-anchor="middle" font-family="Noto Sans KR, sans-serif" font-size="12.5" font-weight="700" fill="var(--navy)">$100</text>
+            <rect x="112" y="207" width="52" height="40" rx="3" fill="var(--paper)" stroke="var(--cell-edge)" stroke-width="1.2"/>
+            <text x="138" y="232" text-anchor="middle" font-family="Noto Sans KR, sans-serif" font-size="12.5" font-weight="700" fill="var(--navy)">$100</text>
+          </g>
+          <g stroke="var(--navy)" stroke-width="1.5">
+            <line x1="164" y1="75" x2="176" y2="75" marker-end="url(#arrN3)"/>
+            <line x1="164" y1="151" x2="176" y2="151" marker-end="url(#arrN3)"/>
+            <line x1="164" y1="227" x2="176" y2="227" marker-end="url(#arrN3)"/>
+          </g>
 
           <!-- 패널 헤더 -->
-          <text x="118" y="26" font-family="Noto Sans KR, sans-serif" font-size="13" font-weight="700" fill="var(--navy)">가격 결정</text>
+          <text x="172" y="26" font-family="Noto Sans KR, sans-serif" font-size="13" font-weight="700" fill="var(--navy)">가격 결정</text>
           <text x="674" y="26" font-family="Noto Sans KR, sans-serif" font-size="13" font-weight="700" fill="var(--navy)">분배</text>
 
           <!-- 패널 박스 -->
-          <rect x="118" y="36" width="508" height="264" rx="4" fill="none" stroke="var(--line)" stroke-width="1"/>
+          <rect x="172" y="36" width="454" height="264" rx="4" fill="none" stroke="var(--line)" stroke-width="1"/>
           <rect x="674" y="36" width="160" height="264" rx="4" fill="none" stroke="var(--line)" stroke-width="1"/>
 
           <!-- 연결 화살표 -->
@@ -502,52 +523,52 @@
 
           <!-- [가격 결정] 입찰 카드 -->
           <g>
-            <rect x="126" y="46" width="178" height="58" rx="3" fill="var(--paper)" stroke="var(--cell-edge)" stroke-width="1.2"/>
-            <text x="138" y="70" font-family="Noto Sans KR, sans-serif" font-size="13" font-weight="700" fill="var(--ink)">A — $100 <tspan font-weight="500" fill="var(--ink-2)">(FDV $200M)</tspan></text>
-            <text x="138" y="90" font-family="Noto Sans KR, sans-serif" font-size="12" fill="var(--ink-2)">최대가격 $20</text>
+            <rect x="180" y="46" width="178" height="58" rx="3" fill="var(--paper)" stroke="var(--cell-edge)" stroke-width="1.2"/>
+            <text x="192" y="70" font-family="Noto Sans KR, sans-serif" font-size="13" font-weight="700" fill="var(--ink)">A — $100 <tspan font-weight="500" fill="var(--ink-2)">(FDV $200M)</tspan></text>
+            <text x="192" y="90" font-family="Noto Sans KR, sans-serif" font-size="12" fill="var(--ink-2)">최대가격 $20</text>
 
-            <rect x="126" y="122" width="178" height="58" rx="3" fill="var(--paper)" stroke="var(--cell-edge)" stroke-width="1.2"/>
-            <text x="138" y="146" font-family="Noto Sans KR, sans-serif" font-size="13" font-weight="700" fill="var(--ink)">B — $100 <tspan font-weight="500" fill="var(--ink-2)">(FDV $100M)</tspan></text>
-            <text x="138" y="166" font-family="Noto Sans KR, sans-serif" font-size="12" fill="var(--ink-2)">최대가격 $10</text>
+            <rect x="180" y="122" width="178" height="58" rx="3" fill="var(--paper)" stroke="var(--cell-edge)" stroke-width="1.2"/>
+            <text x="192" y="146" font-family="Noto Sans KR, sans-serif" font-size="13" font-weight="700" fill="var(--ink)">B — $100 <tspan font-weight="500" fill="var(--ink-2)">(FDV $100M)</tspan></text>
+            <text x="192" y="166" font-family="Noto Sans KR, sans-serif" font-size="12" fill="var(--ink-2)">최대가격 $10</text>
 
-            <rect x="126" y="198" width="178" height="58" rx="3" fill="var(--paper)" stroke="var(--cell-edge)" stroke-width="1.2"/>
-            <text x="138" y="222" font-family="Noto Sans KR, sans-serif" font-size="13" font-weight="700" fill="var(--ink)">C — $100 <tspan font-weight="500" fill="var(--ink-2)">(FDV $50M)</tspan></text>
-            <text x="138" y="242" font-family="Noto Sans KR, sans-serif" font-size="12" fill="var(--ink-2)">최대가격 $5</text>
+            <rect x="180" y="198" width="178" height="58" rx="3" fill="var(--paper)" stroke="var(--cell-edge)" stroke-width="1.2"/>
+            <text x="192" y="222" font-family="Noto Sans KR, sans-serif" font-size="13" font-weight="700" fill="var(--ink)">C — $100 <tspan font-weight="500" fill="var(--ink-2)">(FDV $50M)</tspan></text>
+            <text x="192" y="242" font-family="Noto Sans KR, sans-serif" font-size="12" fill="var(--ink-2)">최대가격 $5</text>
           </g>
 
           <!-- [가격 결정] 공급 기준선 -->
-          <line x1="488" y1="40" x2="488" y2="246" stroke="currentColor" stroke-width="1" stroke-dasharray="4 3"/>
-          <text x="494" y="50" font-family="Noto Sans KR, sans-serif" font-size="11.5" fill="currentColor">공급 10개</text>
+          <line x1="514" y1="40" x2="514" y2="246" stroke="currentColor" stroke-width="1" stroke-dasharray="4 3"/>
+          <text x="520" y="50" font-family="Noto Sans KR, sans-serif" font-size="11.5" fill="currentColor">공급 10개</text>
 
           <!-- [가격 결정] 후보가격별 체결량 -->
-          <text x="346" y="72" text-anchor="end" font-family="Noto Sans KR, sans-serif" font-size="14" font-weight="700" fill="currentColor">$20</text>
-          <rect x="358" y="46" width="65" height="40" rx="2" fill="var(--cell)" stroke="var(--cell-edge)" stroke-width="1"/>
-          <text x="390" y="71" text-anchor="middle" font-family="Noto Sans KR, sans-serif" font-size="12" fill="var(--ink-2)">5개</text>
-          <text x="496" y="71" font-family="Noto Sans KR, sans-serif" font-size="12" fill="currentColor">A만 참여</text>
+          <text x="392" y="72" text-anchor="end" font-family="Noto Sans KR, sans-serif" font-size="14" font-weight="700" fill="currentColor">$20</text>
+          <rect x="404" y="46" width="55" height="40" rx="2" fill="var(--cell)" stroke="var(--cell-edge)" stroke-width="1"/>
+          <text x="431" y="71" text-anchor="middle" font-family="Noto Sans KR, sans-serif" font-size="12" fill="var(--ink-2)">5개</text>
+          <text x="524" y="71" font-family="Noto Sans KR, sans-serif" font-size="12" fill="currentColor">A만 참여</text>
 
-          <text x="346" y="148" text-anchor="end" font-family="Noto Sans KR, sans-serif" font-size="14" font-weight="700" fill="var(--red)">$10</text>
-          <rect x="358" y="122" width="130" height="40" rx="2" fill="var(--red-cell)" stroke="var(--red-edge)" stroke-width="1.2"/>
-          <text x="423" y="147" text-anchor="middle" font-family="Noto Sans KR, sans-serif" font-size="12" font-weight="700" fill="var(--red)">10개 · 전량</text>
-          <text x="496" y="147" font-family="Noto Sans KR, sans-serif" font-size="12" fill="currentColor">A+B 참여</text>
+          <text x="392" y="148" text-anchor="end" font-family="Noto Sans KR, sans-serif" font-size="14" font-weight="700" fill="var(--red)">$10</text>
+          <rect x="404" y="122" width="110" height="40" rx="2" fill="var(--red-cell)" stroke="var(--red-edge)" stroke-width="1.2"/>
+          <text x="459" y="147" text-anchor="middle" font-family="Noto Sans KR, sans-serif" font-size="11.5" font-weight="700" fill="var(--red)">10개 · 전량</text>
+          <text x="524" y="147" font-family="Noto Sans KR, sans-serif" font-size="12" fill="currentColor">A+B 참여</text>
 
-          <text x="346" y="224" text-anchor="end" font-family="Noto Sans KR, sans-serif" font-size="14" font-weight="700" fill="var(--ink-3)">$5</text>
-          <rect x="358" y="198" width="130" height="40" rx="2" fill="var(--line-soft)" stroke="var(--line)" stroke-width="1"/>
-          <text x="423" y="223" text-anchor="middle" font-family="Noto Sans KR, sans-serif" font-size="12" fill="var(--ink-3)">10개</text>
-          <text x="496" y="223" font-family="Noto Sans KR, sans-serif" font-size="12" fill="var(--ink-3)">A+B+C 참여</text>
+          <text x="392" y="224" text-anchor="end" font-family="Noto Sans KR, sans-serif" font-size="14" font-weight="700" fill="var(--ink-3)">$5</text>
+          <rect x="404" y="198" width="110" height="40" rx="2" fill="var(--line-soft)" stroke="var(--line)" stroke-width="1"/>
+          <text x="459" y="223" text-anchor="middle" font-family="Noto Sans KR, sans-serif" font-size="12" fill="var(--ink-3)">10개</text>
+          <text x="524" y="223" font-family="Noto Sans KR, sans-serif" font-size="12" fill="var(--ink-3)">A+B+C 참여</text>
 
           <!-- [가격 결정] 체결량 축 -->
-          <line x1="358" y1="256" x2="530" y2="256" stroke="currentColor" stroke-width="1"/>
+          <line x1="404" y1="256" x2="556" y2="256" stroke="currentColor" stroke-width="1"/>
           <g stroke="currentColor" stroke-width="1">
-            <line x1="358" y1="256" x2="358" y2="261"/>
-            <line x1="423" y1="256" x2="423" y2="261"/>
-            <line x1="488" y1="256" x2="488" y2="261"/>
+            <line x1="404" y1="256" x2="404" y2="261"/>
+            <line x1="459" y1="256" x2="459" y2="261"/>
+            <line x1="514" y1="256" x2="514" y2="261"/>
           </g>
           <g font-family="Noto Sans KR, sans-serif" font-size="11" fill="currentColor" text-anchor="middle">
-            <text x="358" y="276">0</text>
-            <text x="423" y="276">5</text>
-            <text x="488" y="276">10</text>
+            <text x="404" y="276">0</text>
+            <text x="459" y="276">5</text>
+            <text x="514" y="276">10</text>
           </g>
-          <text x="423" y="292" text-anchor="middle" font-family="Noto Sans KR, sans-serif" font-size="12" fill="currentColor">체결량 (토큰)</text>
+          <text x="459" y="292" text-anchor="middle" font-family="Noto Sans KR, sans-serif" font-size="12" fill="currentColor">체결량 (토큰)</text>
 
           <!-- [분배] -->
           <text x="754" y="60" text-anchor="middle" font-family="Noto Sans KR, sans-serif" font-size="12" font-weight="700" fill="var(--red)">체결가 $10 기준 할당</text>
@@ -567,7 +588,7 @@
           <rect x="702" y="220" width="82" height="35" rx="2" fill="none" stroke="var(--line)" stroke-width="1" stroke-dasharray="4 3"/>
           <text x="790" y="242" font-family="Noto Sans KR, sans-serif" font-size="12.5" fill="var(--ink-3)">0개</text>
 
-          <text x="372" y="326" text-anchor="middle" font-family="Noto Sans KR, sans-serif" font-size="12.5" font-weight="700" fill="currentColor">체결량이 최대가 되는 가장 높은 가격 = 블록 체결가</text>
+          <text x="399" y="326" text-anchor="middle" font-family="Noto Sans KR, sans-serif" font-size="12.5" font-weight="700" fill="currentColor">체결량이 최대가 되는 가장 높은 가격 = 블록 체결가</text>
         </svg>
       </div>
     </figure>
