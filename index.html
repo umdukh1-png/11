@@ -216,6 +216,15 @@
   .sum-table td.zero { color: var(--ink-3); font-weight: 400; }
   .sum-table tr.total td { border-top: 2px solid var(--navy); font-weight: 700; color: var(--navy); }
   .sum-table td.num { text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
+  .scen-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 8px; }
+  .scen {
+    border: 1px solid var(--line);
+    border-radius: 6px;
+    padding: 14px 16px;
+  }
+  .scen .t { font-size: 13px; font-weight: 700; color: var(--navy); margin: 0 0 8px; }
+  .scen p { font-size: 12.5px; line-height: 1.8; color: var(--ink); margin: 0; max-width: none; }
+  @media (max-width: 620px) { .scen-grid { grid-template-columns: 1fr; } }
   .tbl-note { font-size: 12.5px; line-height: 1.7; color: var(--ink-2); margin: 10px 2px 0; }
   .ox-x { color: var(--red); font-weight: 700; }
   .sum-table td.h {
@@ -1144,6 +1153,26 @@
         </svg>
       </div>
     </figure>
+  </section>
+
+  <section>
+    <p class="sec">요약</p>
+    <ul class="info-list">
+      <li>일찍 입찰해도 마지막 1블록에 큰 물량이 배치되는 구조상, 예산의 상당 부분은 마지막 블록에서 체결됨</li>
+      <li>초반부터 무리하게 참여하기보다, 모금·커밋 추이로 경쟁 강도를 확인하며 중반 이후 참여해도 무방</li>
+      <li>과거 세일의 상승률은 모두 70% 미만이었으나, 이를 근거로 처음부터 입찰가 상한을 70%로 잡아야 한다는 의미는 아님</li>
+    </ul>
+    <p class="assume-label" style="margin:22px 0 8px">시나리오별 대응</p>
+    <div class="scen-grid">
+      <div class="scen">
+        <p class="t">강한 세일 수요 — AZTEC · CAP · OCTRA</p>
+        <p>이전 블록의 모금/커밋 비율이 낮음 → 경쟁 치열 → 더 낮은 가격에 대기 중인 입찰자 다수 → 높은 FDV로 공격적 입찰 베팅</p>
+      </div>
+      <div class="scen">
+        <p class="t">약한 세일 수요 — FOLD</p>
+        <p>이전 블록의 모금/커밋 비율이 높음 → 경쟁 약함 → 공격적 입찰 시 그 가격이 실제 체결될 리스크 → 직전 블록 입찰 분포를 보며 보수적 베팅</p>
+      </div>
+    </div>
   </section>
 
   </div>
