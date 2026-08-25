@@ -28,7 +28,7 @@
     margin: 0;
   }
   main {
-    max-width: 820px;
+    max-width: 1140px;
     margin: 0 auto;
     padding: 40px 24px 80px;
   }
@@ -139,6 +139,21 @@
   }
 
   figure { margin: 0; }
+  .sec-cols {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 300px;
+    gap: 22px;
+    align-items: start;
+  }
+  .exp-box {
+    border: 1px solid var(--line);
+    border-radius: 6px;
+    padding: 16px 18px;
+  }
+  .exp-box .info-list li { font-size: 13px; line-height: 1.8; }
+  @media (max-width: 1000px) {
+    .sec-cols { grid-template-columns: 1fr; }
+  }
   .fig-scroll { overflow-x: auto; }
 
   .info-list {
@@ -249,7 +264,8 @@
 
   <section>
     <p class="sec">1단계 — 릴리즈 스케줄</p>
-    <figure>
+    <div class="sec-cols">
+      <figure>
       <div class="fig-scroll">
         <svg viewBox="0 0 850 292" role="img" aria-label="총 100개 토큰이 10개 블록에 블록당 10개씩 균등 배정된 릴리즈 스케줄">
           <defs>
@@ -372,11 +388,20 @@
         </svg>
       </div>
     </figure>
+      <div class="exp-box">
+        <ul class="info-list">
+          <li>재단은 세일 시작·종료 블록, 블록당 토큰 할당량, 시작 가격을 사전에 확정</li>
+          <li>참여자는 각 블록마다 분배량과 체결 가격을 정산받는 구조 — 상세 절차는 3단계</li>
+          <li>본 예시는 블록당 균등 할당 가정. 실제 세일은 마지막 블록에 물량의 20~50%를 배치</li>
+        </ul>
+      </div>
+    </div>
   </section>
 
   <section>
     <p class="sec">2단계 — 사용자 입찰</p>
-    <figure>
+    <div class="sec-cols">
+      <figure>
       <div class="fig-scroll">
         <svg viewBox="0 0 850 240" role="img" aria-label="사용자가 최대가격 FDV $200M, 예산 $1,000으로 입찰하면 예산이 10개 블록에 $100씩 분산 배정됨">
           <defs>
@@ -459,11 +484,20 @@
         </svg>
       </div>
     </figure>
+      <div class="exp-box">
+        <ul class="info-list">
+          <li>참여자의 입력값은 예산과 최대 가격 두 가지뿐</li>
+          <li>예산은 각 블록의 할당 물량에 비례해 자동 분산</li>
+          <li>실제 세일은 마지막 블록에 물량 30% 내외가 배치되므로, 예산의 상당 비중도 마지막 블록에 배정됨</li>
+        </ul>
+      </div>
+    </div>
   </section>
 
   <section>
     <p class="sec">3단계 — 블록 내 주문 체결·가격 발견</p>
-    <figure>
+    <div class="sec-cols">
+      <figure>
       <div class="fig-scroll">
         <svg viewBox="0 0 900 372" role="img" aria-label="블록 1(코인 10개 할당)에 참여자 A·B·C가 $100씩 넣고, 가격 결정 패널에서 체결가 $10이 정해진 뒤 분배 패널에서 A 10개·B 0개·C 0개로 할당되는 과정">
           <defs>
@@ -580,11 +614,20 @@
         </svg>
       </div>
     </figure>
+      <div class="exp-box">
+        <ul class="info-list">
+          <li>세일이 시작되면 블록 1부터 가격 결정 → 분배 절차가 순차 진행</li>
+          <li>체결 가격은 높은 가격부터 내려가며 블록 할당 물량을 가장 많이 소화하는 가격으로 결정 — 동시호가와 유사</li>
+          <li>예시에서는 $10에 체결 가격이 확정되고, 높은 입찰 가격 순으로 물량 할당</li>
+        </ul>
+      </div>
+    </div>
   </section>
 
   <section>
     <p class="sec">4단계 — 미체결 자금의 행방</p>
-    <figure>
+    <div class="sec-cols">
+      <figure>
       <div class="fig-scroll">
         <svg viewBox="0 0 850 300" role="img" aria-label="블록 1 체결가 $10에서 A는 단가 $10에 10개 체결, B는 0개 체결로 $100이 블록 2~10에 $11.1씩 이월, C는 범위 밖으로 $100 환불">
           <defs>
@@ -683,6 +726,14 @@
         </svg>
       </div>
     </figure>
+      <div class="exp-box">
+        <ul class="info-list">
+          <li>A: 최고 입찰 가격 제시 → 해당 블록 배정 예산 전액 체결</li>
+          <li>B: 2순위 가격 제시 → A가 물량을 소진해 미체결된 $100은 잔여 블록에 균등 이월</li>
+          <li>C: 체결 가격 미달 → 이후 블록 참여 불가, 세일 종료 시 전액 환불</li>
+        </ul>
+      </div>
+    </div>
   </section>
 
   <section>
